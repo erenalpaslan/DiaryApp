@@ -3,6 +3,7 @@ package com.easylife.diary.ui.navigation
 enum class Screen(val route: String) {
     Splash(route = "splash"),
     OnBoarding(route = "onBoarding"),
+    Main(route = "Main"),
     Diary(route = "diary"),
     Calendar(route = "calendar"),
     Insights(route = "insights"),

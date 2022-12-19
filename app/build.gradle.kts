@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     //endregion
 
     //region Koin
