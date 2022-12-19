@@ -1,4 +1,4 @@
-package com.easylife.diary
+package com.easylife.diary.ui.screen.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
