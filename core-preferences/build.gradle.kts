@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.datastore.preferences)
-    implementation(libs.datastore.core)
+    api(libs.datastore.preferences)
+    api(libs.datastore.core)
 }

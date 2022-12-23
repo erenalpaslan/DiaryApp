@@ -3,37 +3,27 @@ package com.easylife.diary.ui.navigation
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import com.easylife.diary.feature.splash.navigation.splashRoute
+import com.easylife.diary.feature.splash.navigation.splashScreen
 import com.easylife.diary.ui.screen.onboarding.OnBoardingScreen
-import com.easylife.diary.ui.screen.splash.SplashScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import org.koin.androidx.compose.get
-import org.koin.androidx.compose.getViewModel
-import org.koin.core.parameter.parametersOf
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun NavGraph(navController: NavHostController) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = splashRoute
     ) {
+        splashScreen(
+            navigateToOnBoarding = {
 
-        composable(route = Screen.Splash.route) {
-            get<SplashScreen>().Create(
-                viewModel = getViewModel(),
-                navController = navController,
-                navigationActions = get { parametersOf(navController) }
-            )
-        }
+            },
+            navigateToMain = {
 
-        composable(route = Screen.OnBoarding.route) {
-            get<OnBoardingScreen>().Create(
-                viewModel = getViewModel(),
-                navController = navController,
-                navigationActions = get { parametersOf(navController) }
-            )
-        }
+            }
+        )
 
         /*composable(route = Screen.Splash.route) {
             get<SplashScreen>().Create(

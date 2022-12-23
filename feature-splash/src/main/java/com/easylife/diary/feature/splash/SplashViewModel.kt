@@ -12,12 +12,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
 /**
  * Created by erenalpaslan on 19.12.2022
  */
 @HiltViewModel
-class SplashViewModel(
+class SplashViewModel @Inject constructor(
     private val preferencesManager: PreferencesManager
 ): BaseViewModel() {
 

@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("diary.android.application")
+    id("diary.android.application.compose")
     id("diary.hilt")
 }
 
@@ -39,12 +39,14 @@ android {
 
 dependencies {
     implementation(libs.core.ktx)
+    implementation(libs.androidx.appcompat)
 
-    //region Compose
-
+    //region Features
+    implementation(project(":feature-splash"))
     //endregion
 
-    //region Koin
+    //region Cores
+    implementation(project(":core-designsystem"))
     //endregion
 
     //region Accompanist
@@ -66,17 +68,4 @@ dependencies {
     implementation(libs.retrofit.gson.converter)
     implementation(libs.retrofit.coroutine.adapter)
     //endregion
-
-    //region Coil
-    //endregion
-
-    /*implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.1.0-alpha03'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"*/
 }

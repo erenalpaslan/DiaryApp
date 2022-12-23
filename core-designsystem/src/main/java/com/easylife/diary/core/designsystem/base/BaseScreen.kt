@@ -23,9 +23,8 @@ abstract class BaseScreen<VM : BaseViewModel> {
     protected lateinit var viewModel: VM
     protected lateinit var focusManager: FocusManager
 
-    @OptIn(ExperimentalMaterialApi::class)
     @Composable
-    fun Create(viewModel: VM, navController: NavController) {
+    fun Create(viewModel: VM) {
         this@BaseScreen.viewModel = viewModel
         this@BaseScreen.focusManager = LocalFocusManager.current
 

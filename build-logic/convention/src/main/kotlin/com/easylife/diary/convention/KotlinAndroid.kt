@@ -18,7 +18,6 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *>,
 ) {
     commonExtension.apply {
-        namespace = AppConfig.applicationId
         compileSdk = AppConfig.compileSdk
 
         defaultConfig {

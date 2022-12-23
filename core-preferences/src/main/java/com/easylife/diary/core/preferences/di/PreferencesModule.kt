@@ -22,4 +22,5 @@ object PreferencesModule {
     fun providePreferences(@ApplicationContext context: Context): PreferencesManager {
         return PreferencesManager(context)
     }
+
 }
