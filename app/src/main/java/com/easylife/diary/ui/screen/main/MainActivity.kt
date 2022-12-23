@@ -14,7 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.easylife.diary.ui.navigation.NavGraph
 import com.easylife.diary.ui.theme.DiaryTheme
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {

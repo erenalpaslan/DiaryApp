@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("diary.hilt")
 }
 
 android {
@@ -40,30 +41,13 @@ dependencies {
     implementation(libs.core.ktx)
 
     //region Compose
-    val composeBom = platform(libs.androidx.compose.bom)
-    implementation(composeBom)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material.iconsExtended)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material3.windowSizeClass)
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.compose.runtime.tracing)
-    implementation(libs.androidx.compose.runtime.livedata)
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.foundation.layout)
-    implementation(libs.androidx.lifecycle.runtime.compose)
+
     //endregion
 
     //region Koin
-    implementation(libs.koin)
     //endregion
 
     //region Accompanist
-    implementation(libs.accompanist.pager)
-    implementation(libs.accompanist.pager.indicators)
     implementation(libs.accompanist.navigation.animation)
     //endregion
 
@@ -84,7 +68,6 @@ dependencies {
     //endregion
 
     //region Coil
-    implementation(libs.coil)
     //endregion
 
     /*implementation "androidx.compose.ui:ui:$compose_version"
