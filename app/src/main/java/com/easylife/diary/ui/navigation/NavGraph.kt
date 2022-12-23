@@ -3,11 +3,12 @@ package com.easylife.diary.ui.navigation
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
+import com.easylife.diary.feature.onboarding.navigation.navigateToOnBoarding
+import com.easylife.diary.feature.onboarding.navigation.onBoardingScreen
 import com.easylife.diary.feature.splash.navigation.splashRoute
 import com.easylife.diary.feature.splash.navigation.splashScreen
-import com.easylife.diary.ui.screen.onboarding.OnBoardingScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -18,13 +19,21 @@ fun NavGraph(navController: NavHostController) {
     ) {
         splashScreen(
             navigateToOnBoarding = {
-
+                navController.navigateToOnBoarding(
+                    NavOptions.Builder()
+                        .setPopUpTo(this.route, true)
+                        .build()
+                )
             },
             navigateToMain = {
 
             }
         )
+        onBoardingScreen(
+            navigateToMain = {
 
+            }
+        )
         /*composable(route = Screen.Splash.route) {
             get<SplashScreen>().Create(
                 viewModel = getViewModel(),

@@ -1,4 +1,4 @@
-package com.easylife.diary.ui.screen.onboarding
+package com.easylife.diary.feature.onboarding
 
 import com.easylife.diary.core.designsystem.base.BaseViewModel
 

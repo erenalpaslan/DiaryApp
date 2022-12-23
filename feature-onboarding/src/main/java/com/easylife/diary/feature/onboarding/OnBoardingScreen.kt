@@ -1,4 +1,4 @@
-package com.easylife.diary.ui.screen.onboarding
+package com.easylife.diary.feature.onboarding
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,9 @@ import com.easylife.diary.core.designsystem.theme.red
 /**
  * Created by erenalpaslan on 19.12.2022
  */
-class OnBoardingScreen : BaseScreen<OnBoardingViewModel>() {
+class OnBoardingScreen(
+    navigateToMain: () -> Unit
+) : BaseScreen<OnBoardingViewModel>() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
