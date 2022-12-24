@@ -3,6 +3,7 @@ package com.easylife.diary.core.model.theme
 /**
  * Created by erenalpaslan on 24.12.2022
  */
+//TODO: Needs parent background color and
 data class Theme(
     val id: Int,
     val name: String,

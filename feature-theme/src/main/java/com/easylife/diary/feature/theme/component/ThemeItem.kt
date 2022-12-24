@@ -51,8 +51,6 @@ fun PagerScope.ThemeItem(
     page: Int
 ) {
     Scaffold(
-        containerColor = black,
-        contentColor = black,
         modifier = Modifier
             .fillMaxSize()
             .graphicsLayer {
@@ -125,7 +123,6 @@ fun ExampleDiaryItem(
                 painter = painterResource(id = R.drawable.bg_image_placeholder),
                 contentDescription = "Background Placeholder",
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(70.dp),
-                colorFilter = ColorFilter.tint(white),
                 contentScale = ContentScale.FillBounds
             )
         }
