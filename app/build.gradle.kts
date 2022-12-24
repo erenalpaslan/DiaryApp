@@ -43,7 +43,7 @@ dependencies {
 
     //region Features
     implementation(project(":feature-splash"))
-    implementation(project(":feature-onboarding"))
+    implementation(project(":feature-theme"))
     //endregion
 
     //region Cores

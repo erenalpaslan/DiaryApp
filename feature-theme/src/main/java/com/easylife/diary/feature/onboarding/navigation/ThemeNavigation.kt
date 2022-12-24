@@ -5,24 +5,24 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
-import com.easylife.diary.feature.onboarding.OnBoardingScreen
+import com.easylife.diary.feature.onboarding.ThemeScreen
 import com.google.accompanist.navigation.animation.composable
 
 /**
  * Created by erenalpaslan on 24.12.2022
  */
-const val onBoardingRoute = "onboarding_route"
+const val themeRoute = "theme_route"
 
-fun NavController.navigateToOnBoarding(navOptions: NavOptions? = null) {
-    this.navigate(onBoardingRoute, navOptions)
+fun NavController.navigateToTheme(navOptions: NavOptions? = null) {
+    this.navigate(themeRoute, navOptions)
 }
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.onBoardingScreen(
+fun NavGraphBuilder.themeScreen(
     navigateToMain: () -> Unit
 ) {
-    composable(route = onBoardingRoute) {
-        OnBoardingScreen(
+    composable(route = themeRoute) {
+        ThemeScreen(
            navigateToMain = {
                navigateToMain()
            }

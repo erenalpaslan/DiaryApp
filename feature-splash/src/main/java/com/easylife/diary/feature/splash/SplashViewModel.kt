@@ -27,7 +27,6 @@ class SplashViewModel @Inject constructor(
     }
 
     val uiState: StateFlow<SplashUiState> = shouldShowOnBoarding.map {
-        delay(2000)
         if (it)
             SplashUiState.NewComer
         else

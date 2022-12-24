@@ -20,6 +20,8 @@ dependencies {
     api(libs.androidx.compose.foundation)
     api(libs.androidx.compose.foundation.layout)
     api(libs.androidx.lifecycle.runtime.compose)
+    api(libs.androidx.compose.constraintlayout)
+    api(libs.androidx.compose.ui.util)
 
     api(libs.accompanist.pager)
     api(libs.accompanist.pager.indicators)

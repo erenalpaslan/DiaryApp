@@ -20,6 +20,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             dependencies {
                 add("implementation", project(":core-preferences"))
                 add("implementation", project(":core-designsystem"))
+                add("implementation", project(":core-model"))
                 //add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
                 //add("implementation", project(":core-navigation"))
                 //add("implementation", project(":core-data"))

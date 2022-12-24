@@ -4,8 +4,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
-import com.easylife.diary.feature.onboarding.navigation.navigateToOnBoarding
-import com.easylife.diary.feature.onboarding.navigation.onBoardingScreen
+import com.easylife.diary.feature.onboarding.navigation.navigateToTheme
+import com.easylife.diary.feature.onboarding.navigation.themeScreen
 import com.easylife.diary.feature.splash.navigation.splashRoute
 import com.easylife.diary.feature.splash.navigation.splashScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -19,9 +19,9 @@ fun NavGraph(navController: NavHostController) {
     ) {
         splashScreen(
             navigateToOnBoarding = {
-                navController.navigateToOnBoarding(
+                navController.navigateToTheme(
                     NavOptions.Builder()
-                        .setPopUpTo(this.route, true)
+                        .setPopUpTo(splashRoute, true)
                         .build()
                 )
             },
@@ -29,7 +29,7 @@ fun NavGraph(navController: NavHostController) {
 
             }
         )
-        onBoardingScreen(
+        themeScreen(
             navigateToMain = {
 
             }
