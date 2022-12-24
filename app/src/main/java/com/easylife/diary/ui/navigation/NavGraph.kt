@@ -4,8 +4,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
-import com.easylife.diary.feature.onboarding.navigation.navigateToTheme
-import com.easylife.diary.feature.onboarding.navigation.themeScreen
+import com.easylife.diary.feature.theme.navigation.navigateToTheme
+import com.easylife.diary.feature.theme.navigation.themeScreen
 import com.easylife.diary.feature.splash.navigation.splashRoute
 import com.easylife.diary.feature.splash.navigation.splashScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -18,7 +18,7 @@ fun NavGraph(navController: NavHostController) {
         startDestination = splashRoute
     ) {
         splashScreen(
-            navigateToOnBoarding = {
+            navigateToTheme = {
                 navController.navigateToTheme(
                     NavOptions.Builder()
                         .setPopUpTo(splashRoute, true)

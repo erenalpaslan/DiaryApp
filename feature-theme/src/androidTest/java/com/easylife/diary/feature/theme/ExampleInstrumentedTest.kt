@@ -1,4 +1,4 @@
-package com.easylife.diary.feature.onboarding
+package com.easylife.diary.feature.theme
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.easylife.diary.feature.onboarding.test", appContext.packageName)
+        assertEquals("com.easylife.diary.feature.theme.test", appContext.packageName)
     }
 }

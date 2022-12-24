@@ -19,13 +19,13 @@ fun NavController.navigateToSplash(navOptions: NavOptions? = null) {
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.splashScreen(
-    navigateToOnBoarding: () -> Unit,
+    navigateToTheme: () -> Unit,
     navigateToMain: () -> Unit
 ) {
     composable(route = splashRoute) {
         SplashScreen(
-            navigateToOnBoarding = {
-                navigateToOnBoarding()
+            navigateToTheme = {
+                navigateToTheme()
             },
             navigateToMain = {
                 navigateToMain()

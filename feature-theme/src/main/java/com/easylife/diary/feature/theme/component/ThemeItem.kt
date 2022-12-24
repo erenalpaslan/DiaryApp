@@ -1,4 +1,4 @@
-package com.easylife.diary.feature.onboarding.component
+package com.easylife.diary.feature.theme.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -6,18 +6,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -31,17 +28,14 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import androidx.constraintlayout.compose.ConstraintLayout
 import com.easylife.diary.core.designsystem.theme.black
 import com.easylife.diary.core.designsystem.theme.gray
-import com.easylife.diary.core.designsystem.theme.red
 import com.easylife.diary.core.designsystem.theme.white
 import com.easylife.diary.core.model.theme.Theme
-import com.easylife.diary.feature.onboarding.R
+import com.easylife.diary.feature.theme.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerScope
 import com.google.accompanist.pager.calculateCurrentOffsetForPage

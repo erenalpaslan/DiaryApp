@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
@@ -23,7 +22,7 @@ import com.easylife.diary.core.designsystem.base.BaseScreen
  * Created by erenalpaslan on 19.12.2022
  */
 class SplashScreen(
-    val navigateToOnBoarding: () -> Unit,
+    val navigateToTheme: () -> Unit,
     val navigateToMain: () -> Unit
 ) : BaseScreen<SplashViewModel>() {
     @OptIn(ExperimentalLifecycleComposeApi::class)
@@ -32,7 +31,7 @@ class SplashScreen(
         val splashUiState by viewModel.uiState.collectAsStateWithLifecycle()
         when(splashUiState) {
             SplashUiState.Loading -> {}
-            SplashUiState.NewComer -> navigateToOnBoarding()
+            SplashUiState.NewComer -> navigateToTheme()
             SplashUiState.OnBoardedUser -> navigateToMain()
         }
         SplashContent()

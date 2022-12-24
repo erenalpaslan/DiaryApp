@@ -1,4 +1,4 @@
-package com.easylife.diary.feature.onboarding
+package com.easylife.diary.feature.theme
 
 import com.easylife.diary.core.model.theme.Theme
 
@@ -17,4 +17,6 @@ sealed interface ThemeUiState {
     ): ThemeUiState
 
     object Error: ThemeUiState
+
+    object ThemeApplied: ThemeUiState
 }

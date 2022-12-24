@@ -1,4 +1,4 @@
-package com.easylife.diary.feature.onboarding
+package com.easylife.diary.feature.theme
 
 import org.junit.Test
 
