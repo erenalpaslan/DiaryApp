@@ -18,15 +18,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 
-private val DefaultColorScheme = lightColorScheme(
+val DefaultColorScheme = lightColorScheme(
     primary = gold,
     secondary = white,
     tertiary = outerSpace,
     onPrimary = white,
     background = alabaster,
+    onBackground = gray,
     surface = alabaster,
     onSurface = outerSpace,
     surfaceVariant = white,
+    onSurfaceVariant = gray
 )
 
 //TODO: Main neeeds to handle changes of colorscheme

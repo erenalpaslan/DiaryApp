@@ -24,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -33,8 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.easylife.diary.core.designsystem.theme.black
 import com.easylife.diary.core.designsystem.theme.gray
-import com.easylife.diary.core.designsystem.theme.white
-import com.easylife.diary.core.model.theme.Theme
+import com.easylife.diary.feature.theme.util.Theme
 import com.easylife.diary.feature.theme.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerScope
@@ -51,6 +49,7 @@ fun PagerScope.ThemeItem(
     page: Int
 ) {
     Scaffold(
+        containerColor = theme.colorScheme.background,
         modifier = Modifier
             .fillMaxSize()
             .graphicsLayer {
@@ -75,12 +74,14 @@ fun PagerScope.ThemeItem(
                     Box(
                         modifier = Modifier
                             .clip(MaterialTheme.shapes.extraSmall)
-                            .background(gray)
+                            .background(theme.colorScheme.onSurfaceVariant)
                             .fillMaxWidth(0.45f)
                             .height(20.dp)
                     )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = black),
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = theme.colorScheme.background,
+                ),
             )
         },
 
@@ -94,11 +95,11 @@ fun PagerScope.ThemeItem(
                 .fillMaxSize(),
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            ExampleDiaryItem("07 MAR", "Sunday", showBackground = true)
+            ExampleDiaryItem("07 MAR", "Sunday", showBackground = true, theme = theme)
             Spacer(modifier = Modifier.height(8.dp))
-            ExampleDiaryItem("08 MAR", "Monday")
+            ExampleDiaryItem("08 MAR", "Monday", theme = theme)
             Spacer(modifier = Modifier.height(8.dp))
-            ExampleDiaryItem("08 MAR", "Monday", showTitle = false)
+            ExampleDiaryItem("08 MAR", "Monday", showTitle = false, theme = theme)
         }
     }
 }
@@ -108,21 +109,26 @@ fun ExampleDiaryItem(
     dayOfMonth: String,
     day: String,
     showBackground: Boolean = false,
-    showTitle: Boolean = true
+    showTitle: Boolean = true,
+    theme: Theme
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+        colors = CardDefaults.cardColors(containerColor = theme.colorScheme.surfaceVariant)
     ) {
         Spacer(modifier = Modifier.height(10.dp))
         if (showBackground) {
             Image(
                 painter = painterResource(id = R.drawable.bg_image_placeholder),
                 contentDescription = "Background Placeholder",
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(70.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .height(70.dp),
                 contentScale = ContentScale.FillBounds
             )
         }
@@ -130,15 +136,22 @@ fun ExampleDiaryItem(
             modifier = Modifier.padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = dayOfMonth, fontWeight = FontWeight.Bold)
+            Text(
+                text = dayOfMonth,
+                fontWeight = FontWeight.Bold,
+                color = theme.colorScheme.onSurfaceVariant
+            )
             Box(
                 modifier = Modifier
                     .padding(4.dp)
                     .clip(CircleShape)
-                    .background(gray)
+                    .background(theme.colorScheme.onSurfaceVariant)
                     .size(6.dp)
             )
-            Text(text = day)
+            Text(
+                text = day,
+                color = theme.colorScheme.onSurfaceVariant
+            )
         }
         Spacer(modifier = Modifier.height(10.dp))
         if (showTitle) {
@@ -146,7 +159,7 @@ fun ExampleDiaryItem(
                 Box(
                     modifier = Modifier
                         .clip(MaterialTheme.shapes.extraSmall)
-                        .background(gray)
+                        .background(theme.colorScheme.onSurfaceVariant)
                         .height(12.dp)
                         .fillMaxWidth(0.35f)
                 )
@@ -157,7 +170,7 @@ fun ExampleDiaryItem(
             Box(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraSmall)
-                    .background(gray)
+                    .background(theme.colorScheme.onSurfaceVariant)
                     .fillMaxWidth(0.9f)
                     .height(8.dp)
             )
@@ -167,7 +180,7 @@ fun ExampleDiaryItem(
             Box(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraSmall)
-                    .background(gray)
+                    .background(theme.colorScheme.onSurfaceVariant)
                     .fillMaxWidth(0.7f)
                     .height(8.dp)
             )

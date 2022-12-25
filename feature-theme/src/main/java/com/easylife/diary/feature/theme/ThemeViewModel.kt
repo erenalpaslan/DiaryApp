@@ -2,8 +2,7 @@ package com.easylife.diary.feature.theme
 
 import androidx.lifecycle.viewModelScope
 import com.easylife.diary.core.designsystem.base.BaseViewModel
-import com.easylife.diary.core.model.theme.Theme
-import kotlinx.coroutines.delay
+import com.easylife.diary.feature.theme.util.Themes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -21,38 +20,7 @@ class ThemeViewModel: BaseViewModel() {
         viewModelScope.launch {
             _uiState.update {
                 ThemeUiState.Success(
-                    listOf(
-                        Theme(
-                            id = 1,
-                            name = "Sarı Kız",
-                            colorConfig = null,
-                            fontConfig = null,
-                            backgroundImage = null,
-                            smallBackgroundImage = null,
-                            isPremium = false,
-                            isSelected = false
-                        ),
-                        Theme(
-                            id = 2,
-                            name = "Pembe",
-                            colorConfig = null,
-                            fontConfig = null,
-                            backgroundImage = null,
-                            smallBackgroundImage = null,
-                            isPremium = false,
-                            isSelected = false
-                        ),
-                        Theme(
-                            id = 1,
-                            name = "Karacaoğlan",
-                            colorConfig = null,
-                            fontConfig = null,
-                            backgroundImage = null,
-                            smallBackgroundImage = null,
-                            isPremium = false,
-                            isSelected = false
-                        ),
-                    )
+                    Themes.getThemes()
                 )
             }
         }
