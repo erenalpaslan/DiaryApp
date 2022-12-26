@@ -1,7 +1,9 @@
 package com.easylife.diary.feature.theme
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -105,7 +107,8 @@ class ThemeScreen(
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = currentTheme?.colorScheme?.primary
                                     ?: MaterialTheme.colorScheme.primary,
-
+                                contentColor = currentTheme?.colorScheme?.onPrimary
+                                    ?: MaterialTheme.colorScheme.onPrimary
                             )
                         ) {
                             Text(

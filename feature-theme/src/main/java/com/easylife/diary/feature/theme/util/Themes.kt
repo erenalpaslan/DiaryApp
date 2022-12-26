@@ -4,7 +4,12 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import com.easylife.diary.core.designsystem.theme.DefaultColorScheme
 import com.easylife.diary.core.designsystem.theme.DefaultTypography
+import com.easylife.diary.core.designsystem.theme.americanPink
+import com.easylife.diary.core.designsystem.theme.black
 import com.easylife.diary.core.designsystem.theme.blue
+import com.easylife.diary.core.designsystem.theme.lightRed
+import com.easylife.diary.core.designsystem.theme.mistyRose
+import com.easylife.diary.core.designsystem.theme.oldLace
 import com.easylife.diary.core.designsystem.theme.outerSpace
 import com.easylife.diary.core.designsystem.theme.pearl
 import com.easylife.diary.core.designsystem.theme.red
@@ -39,9 +44,16 @@ enum class Themes(val theme: Theme) {
         Theme(
             id = 2,
             name = "Pink Theme",
-            colorScheme = lightColorScheme(),
+            colorScheme = lightColorScheme(
+                primary = oldLace,
+                onPrimary = black,
+                background = lightRed,
+                onBackground = black,
+                surfaceVariant = mistyRose,
+                onSurfaceVariant = white
+            ),
             typography = DefaultTypography,
-            parentBackgroundColor = red
+            parentBackgroundColor = americanPink
         )
     );
 

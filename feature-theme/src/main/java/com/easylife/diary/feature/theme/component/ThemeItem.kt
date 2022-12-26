@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -51,7 +52,8 @@ fun PagerScope.ThemeItem(
     Scaffold(
         containerColor = theme.colorScheme.background,
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxHeight()
+            .fillMaxSize(0.9f)
             .graphicsLayer {
                 // Calculate the absolute offset for the current page from the
                 // scroll position. We use the absolute value which allows us to mirror
@@ -76,7 +78,7 @@ fun PagerScope.ThemeItem(
                             .clip(MaterialTheme.shapes.extraSmall)
                             .background(theme.colorScheme.onSurfaceVariant)
                             .fillMaxWidth(0.45f)
-                            .height(20.dp)
+                            .height(12.dp)
                     )
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
@@ -128,8 +130,8 @@ fun ExampleDiaryItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
-                    .height(70.dp),
-                contentScale = ContentScale.FillBounds
+                    .height(32.dp),
+                contentScale = ContentScale.Inside
             )
         }
         Row(
@@ -139,7 +141,8 @@ fun ExampleDiaryItem(
             Text(
                 text = dayOfMonth,
                 fontWeight = FontWeight.Bold,
-                color = theme.colorScheme.onSurfaceVariant
+                color = theme.colorScheme.onSurfaceVariant,
+                style = MaterialTheme.typography.labelMedium
             )
             Box(
                 modifier = Modifier
@@ -150,21 +153,22 @@ fun ExampleDiaryItem(
             )
             Text(
                 text = day,
-                color = theme.colorScheme.onSurfaceVariant
+                color = theme.colorScheme.onSurfaceVariant,
+                style = MaterialTheme.typography.labelSmall
             )
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(6.dp))
         if (showTitle) {
             Row(modifier = Modifier.padding(horizontal = 16.dp)) {
                 Box(
                     modifier = Modifier
                         .clip(MaterialTheme.shapes.extraSmall)
                         .background(theme.colorScheme.onSurfaceVariant)
-                        .height(12.dp)
+                        .height(8.dp)
                         .fillMaxWidth(0.35f)
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
         }
         Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             Box(
@@ -172,19 +176,19 @@ fun ExampleDiaryItem(
                     .clip(MaterialTheme.shapes.extraSmall)
                     .background(theme.colorScheme.onSurfaceVariant)
                     .fillMaxWidth(0.9f)
-                    .height(8.dp)
+                    .height(4.dp)
             )
         }
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(2.dp))
         Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             Box(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraSmall)
                     .background(theme.colorScheme.onSurfaceVariant)
                     .fillMaxWidth(0.7f)
-                    .height(8.dp)
+                    .height(4.dp)
             )
         }
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }

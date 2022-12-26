@@ -20,9 +20,9 @@ import androidx.core.view.ViewCompat
 
 val DefaultColorScheme = lightColorScheme(
     primary = gold,
+    onPrimary = black,
     secondary = white,
     tertiary = outerSpace,
-    onPrimary = white,
     background = alabaster,
     onBackground = gray,
     surface = alabaster,
