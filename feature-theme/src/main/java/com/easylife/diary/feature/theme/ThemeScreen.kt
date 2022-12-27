@@ -102,7 +102,7 @@ class ThemeScreen(
                                 end.linkTo(parent.end, 16.dp)
                                 width = Dimension.fillToConstraints
                             }, onClick = {
-                            viewModel.onApplyClicked()
+                            viewModel.onApplyClicked(currentTheme)
                         },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = currentTheme?.colorScheme?.primary

@@ -30,18 +30,3 @@ val DefaultColorScheme = lightColorScheme(
     surfaceVariant = white,
     onSurfaceVariant = gray
 )
-
-//TODO: Main neeeds to handle changes of colorscheme
-// by observing theme changes by user
-@Composable
-fun DiaryTheme(
-    colorScheme: ColorScheme = DefaultColorScheme,
-    typography: Typography = DefaultTypography,
-    content: @Composable () -> Unit
-) {
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = typography,
-        content = content
-    )
-}
