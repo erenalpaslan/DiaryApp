@@ -5,7 +5,6 @@ import com.easylife.diary.core.designsystem.base.BaseViewModel
 import com.easylife.diary.core.preferences.PreferencesKeys
 import com.easylife.diary.core.preferences.PreferencesManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,12 +21,11 @@ class SplashViewModel @Inject constructor(
     private val preferencesManager: PreferencesManager
 ): BaseViewModel() {
 
-    private val shouldShowOnBoarding: Flow<Boolean> = flow {
+    private val shouldShowThemeSelection: Flow<Boolean> = flow {
         emit(preferencesManager.getBoolean(PreferencesKeys.IS_FIRST_ENTER))
     }
 
-    val uiState: StateFlow<SplashUiState> = shouldShowOnBoarding.map {
-        delay(2000)
+    val uiState: StateFlow<SplashUiState> = shouldShowThemeSelection.map {
         if (it)
             SplashUiState.NewComer
         else

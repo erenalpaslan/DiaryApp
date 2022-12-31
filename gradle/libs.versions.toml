@@ -11,9 +11,9 @@ androidxJUnit = "1.1.4"
 androidxEspressoCore = "3.5.0"
 androidxConstraintLayout = "1.0.1"
 accompanist = "0.24.1-alpha"
-accompanistNavigation = "0.24.11-rc"
+accompanistNavigation = "0.28.0"
 hilt = "2.44"
-androidxHiltNavigationCompose = "1.0.0"
+androidxHiltNavigationCompose = "1.1.0-alpha01"
 dataStore = "1.0.0"
 gson = "2.9.0"
 okHttpBom = "4.9.2"
@@ -25,6 +25,7 @@ firebase = "30.3.2"
 lifecycleCompose = "2.6.0-alpha01"
 androidDesugarJdkLibs = "1.1.5"
 androidxAppCompat = "1.4.2"
+androidxLiveData = "2.5.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,7 +46,9 @@ androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-t
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
+androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidxConstraintLayout" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleCompose" }
+androidx-livedata = { group = "androidx.lifecycle", name  = "lifecycle-livedata-core-ktx", version.ref = "androidxLiveData"}
 junit = { group = "junit", name = "junit", version.ref = "jUnit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJUnit" }
 androix-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspressoCore" }

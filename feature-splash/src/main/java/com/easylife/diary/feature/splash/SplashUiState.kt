@@ -8,12 +8,12 @@ sealed interface SplashUiState {
     object Loading: SplashUiState
 
     /**
-     * User visited onboard previously or skipped onboarding phases
+     * User applied or skipped the theme selection phases
      */
     object OnBoardedUser: SplashUiState
 
     /**
-     * There is a onboarding state
+     * User need to be directed towards to the theme selection
      */
     object NewComer: SplashUiState
 }
