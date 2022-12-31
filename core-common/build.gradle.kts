@@ -3,4 +3,6 @@ plugins {
 }
 
 dependencies {
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.livedata)
 }

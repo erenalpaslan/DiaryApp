@@ -31,9 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import com.easylife.diary.core.designsystem.theme.black
-import com.easylife.diary.core.designsystem.theme.gray
-import com.easylife.diary.feature.theme.util.Theme
+import com.easylife.diary.feature.theme.util.DiaryTheme
 import com.easylife.diary.feature.theme.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerScope
@@ -46,11 +44,11 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun PagerScope.ThemeItem(
-    theme: Theme,
+    diaryTheme: DiaryTheme,
     page: Int
 ) {
     Scaffold(
-        containerColor = theme.colorScheme.background,
+        containerColor = diaryTheme.colorScheme.background,
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxSize(0.9f)
@@ -76,13 +74,13 @@ fun PagerScope.ThemeItem(
                     Box(
                         modifier = Modifier
                             .clip(MaterialTheme.shapes.extraSmall)
-                            .background(theme.colorScheme.onSurfaceVariant)
+                            .background(diaryTheme.colorScheme.onSurfaceVariant)
                             .fillMaxWidth(0.45f)
                             .height(12.dp)
                     )
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = theme.colorScheme.background,
+                    containerColor = diaryTheme.colorScheme.background,
                 ),
             )
         },
@@ -97,11 +95,11 @@ fun PagerScope.ThemeItem(
                 .fillMaxSize(),
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            ExampleDiaryItem("07 MAR", "Sunday", showBackground = true, theme = theme)
+            ExampleDiaryItem("07 MAR", "Sunday", showBackground = true, diaryTheme = diaryTheme)
             Spacer(modifier = Modifier.height(8.dp))
-            ExampleDiaryItem("08 MAR", "Monday", theme = theme)
+            ExampleDiaryItem("08 MAR", "Monday", diaryTheme = diaryTheme)
             Spacer(modifier = Modifier.height(8.dp))
-            ExampleDiaryItem("08 MAR", "Monday", showTitle = false, theme = theme)
+            ExampleDiaryItem("08 MAR", "Monday", showTitle = false, diaryTheme = diaryTheme)
         }
     }
 }
@@ -112,7 +110,7 @@ fun ExampleDiaryItem(
     day: String,
     showBackground: Boolean = false,
     showTitle: Boolean = true,
-    theme: Theme
+    diaryTheme: DiaryTheme
 ) {
     Card(
         modifier = Modifier
@@ -120,7 +118,7 @@ fun ExampleDiaryItem(
             .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-        colors = CardDefaults.cardColors(containerColor = theme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = diaryTheme.colorScheme.surfaceVariant)
     ) {
         Spacer(modifier = Modifier.height(10.dp))
         if (showBackground) {
@@ -141,19 +139,19 @@ fun ExampleDiaryItem(
             Text(
                 text = dayOfMonth,
                 fontWeight = FontWeight.Bold,
-                color = theme.colorScheme.onSurfaceVariant,
+                color = diaryTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.labelMedium
             )
             Box(
                 modifier = Modifier
                     .padding(4.dp)
                     .clip(CircleShape)
-                    .background(theme.colorScheme.onSurfaceVariant)
+                    .background(diaryTheme.colorScheme.onSurfaceVariant)
                     .size(6.dp)
             )
             Text(
                 text = day,
-                color = theme.colorScheme.onSurfaceVariant,
+                color = diaryTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.labelSmall
             )
         }
@@ -163,7 +161,7 @@ fun ExampleDiaryItem(
                 Box(
                     modifier = Modifier
                         .clip(MaterialTheme.shapes.extraSmall)
-                        .background(theme.colorScheme.onSurfaceVariant)
+                        .background(diaryTheme.colorScheme.onSurfaceVariant)
                         .height(8.dp)
                         .fillMaxWidth(0.35f)
                 )
@@ -174,7 +172,7 @@ fun ExampleDiaryItem(
             Box(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraSmall)
-                    .background(theme.colorScheme.onSurfaceVariant)
+                    .background(diaryTheme.colorScheme.onSurfaceVariant)
                     .fillMaxWidth(0.9f)
                     .height(4.dp)
             )
@@ -184,7 +182,7 @@ fun ExampleDiaryItem(
             Box(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraSmall)
-                    .background(theme.colorScheme.onSurfaceVariant)
+                    .background(diaryTheme.colorScheme.onSurfaceVariant)
                     .fillMaxWidth(0.7f)
                     .height(4.dp)
             )

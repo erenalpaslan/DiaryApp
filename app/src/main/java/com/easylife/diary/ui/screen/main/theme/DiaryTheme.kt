@@ -1,20 +1,19 @@
 package com.easylife.diary.ui.screen.main.theme
 
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.runtime.Composable
 import com.easylife.diary.core.designsystem.theme.DefaultColorScheme
 import com.easylife.diary.core.designsystem.theme.DefaultTypography
-import com.easylife.diary.feature.theme.util.Theme
+import com.easylife.diary.feature.theme.util.DiaryTheme
 
 @Composable
 fun DiaryTheme(
-    theme: Theme? = null,
+    diaryTheme: DiaryTheme? = null,
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colorScheme = theme?.colorScheme ?: DefaultColorScheme,
-        typography = theme?.typography ?: DefaultTypography,
+        colorScheme = diaryTheme?.colorScheme ?: DefaultColorScheme,
+        typography = diaryTheme?.typography ?: DefaultTypography,
         content = content
     )
 }

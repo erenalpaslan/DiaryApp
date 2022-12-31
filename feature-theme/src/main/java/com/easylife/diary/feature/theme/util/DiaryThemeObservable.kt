@@ -5,4 +5,4 @@ import androidx.lifecycle.MutableLiveData
 /**
  * Created by erenalpaslan on 25.12.2022
  */
-class ThemeObservable: MutableLiveData<Theme>()
+class DiaryThemeObservable: MutableLiveData<DiaryTheme>()

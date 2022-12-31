@@ -2,8 +2,8 @@ package com.easylife.diary.feature.theme
 
 import androidx.lifecycle.viewModelScope
 import com.easylife.diary.core.designsystem.base.BaseViewModel
-import com.easylife.diary.feature.theme.util.Theme
-import com.easylife.diary.feature.theme.util.ThemeObservable
+import com.easylife.diary.feature.theme.util.DiaryTheme
+import com.easylife.diary.feature.theme.util.DiaryThemeObservable
 import com.easylife.diary.feature.theme.util.Themes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +17,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class ThemeViewModel @Inject constructor(
-    private val themeObservable: ThemeObservable
-): BaseViewModel() {
+    private val diaryThemeObservable: DiaryThemeObservable
+) : BaseViewModel() {
 
     private val _uiState: MutableStateFlow<ThemeUiState> = MutableStateFlow(ThemeUiState.Loading)
     val uiState = _uiState.asStateFlow()
@@ -33,9 +33,12 @@ class ThemeViewModel @Inject constructor(
         }
     }
 
-    fun onApplyClicked(theme: Theme?) {
+    fun onApplyClicked(diaryTheme: DiaryTheme?) {
         viewModelScope.launch {
-            themeObservable.postValue(theme)
+            diaryThemeObservable.postValue(diaryTheme)
+            _uiState.update {
+                ThemeUiState.ThemeApplied
+            }
         }
     }
 

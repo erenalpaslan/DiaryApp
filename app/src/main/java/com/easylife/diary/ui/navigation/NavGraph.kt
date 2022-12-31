@@ -1,9 +1,14 @@
 package com.easylife.diary.ui.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
+import com.easylife.diary.feature.main.navigation.mainScreen
+import com.easylife.diary.feature.main.navigation.navigateToMain
 import com.easylife.diary.feature.theme.navigation.navigateToTheme
 import com.easylife.diary.feature.theme.navigation.themeScreen
 import com.easylife.diary.feature.splash.navigation.splashRoute
@@ -26,14 +31,16 @@ fun NavGraph(navController: NavHostController) {
                 )
             },
             navigateToMain = {
-
+                navController.navigateToMain()
             }
         )
         themeScreen(
             navigateToMain = {
-
+                navController.navigateToMain()
             }
         )
+
+        mainScreen()
         /*composable(route = Screen.Splash.route) {
             get<SplashScreen>().Create(
                 viewModel = getViewModel(),

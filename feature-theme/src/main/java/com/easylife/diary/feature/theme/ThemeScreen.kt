@@ -1,17 +1,13 @@
 package com.easylife.diary.feature.theme
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +20,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.easylife.diary.core.designsystem.base.BaseScreen
-import com.easylife.diary.feature.theme.util.Theme
+import com.easylife.diary.feature.theme.util.DiaryTheme
 import com.easylife.diary.feature.theme.component.ThemeItem
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -48,15 +44,15 @@ class ThemeScreen(
         themeUiState: ThemeUiState,
     ) {
         val pagerState = rememberPagerState()
-        var currentTheme by remember {
-            mutableStateOf<Theme?>(null)
+        var currentDiaryTheme by remember {
+            mutableStateOf<DiaryTheme?>(null)
         }
         when (themeUiState) {
             ThemeUiState.Error -> navigateToMain()
             ThemeUiState.Loading -> Unit
             is ThemeUiState.Success -> {
                 Scaffold(
-                    containerColor = currentTheme?.parentBackgroundColor
+                    containerColor = currentDiaryTheme?.parentBackgroundColor
                         ?: MaterialTheme.colorScheme.background
                 ) {
                     ConstraintLayout(
@@ -74,10 +70,10 @@ class ThemeScreen(
                                 width = Dimension.fillToConstraints
                             },
                             style = MaterialTheme.typography.headlineSmall,
-                            color = currentTheme?.colorScheme?.onPrimary
+                            color = currentDiaryTheme?.colorScheme?.onPrimary
                                 ?: MaterialTheme.colorScheme.onPrimary
                         )
-                        HorizontalPager(count = themeUiState.themes.size,
+                        HorizontalPager(count = themeUiState.diaryThemes.size,
                             state = pagerState,
                             key = { page -> page },
                             itemSpacing = 16.dp,
@@ -91,9 +87,9 @@ class ThemeScreen(
                             }
                         ) { page ->
                             ThemeItem(
-                                theme = themeUiState.themes[page], page = page
+                                diaryTheme = themeUiState.diaryThemes[page], page = page
                             )
-                            currentTheme = themeUiState.themes[pagerState.currentPage]
+                            currentDiaryTheme = themeUiState.diaryThemes[pagerState.currentPage]
                         }
                         Button(modifier = Modifier
                             .constrainAs(applyButtonRef) {
@@ -102,12 +98,12 @@ class ThemeScreen(
                                 end.linkTo(parent.end, 16.dp)
                                 width = Dimension.fillToConstraints
                             }, onClick = {
-                            viewModel.onApplyClicked(currentTheme)
+                            viewModel.onApplyClicked(currentDiaryTheme)
                         },
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = currentTheme?.colorScheme?.primary
+                                containerColor = currentDiaryTheme?.colorScheme?.primary
                                     ?: MaterialTheme.colorScheme.primary,
-                                contentColor = currentTheme?.colorScheme?.onPrimary
+                                contentColor = currentDiaryTheme?.colorScheme?.onPrimary
                                     ?: MaterialTheme.colorScheme.onPrimary
                             )
                         ) {

@@ -15,8 +15,8 @@ object ThemeModule {
 
     @Provides
     @Singleton
-    fun provideThemeObservable(): ThemeObservable {
-        return ThemeObservable()
+    fun provideDiaryThemeObservable(): DiaryThemeObservable {
+        return DiaryThemeObservable()
     }
 
 }

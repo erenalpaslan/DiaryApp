@@ -12,15 +12,14 @@ import com.easylife.diary.core.designsystem.theme.mistyRose
 import com.easylife.diary.core.designsystem.theme.oldLace
 import com.easylife.diary.core.designsystem.theme.outerSpace
 import com.easylife.diary.core.designsystem.theme.pearl
-import com.easylife.diary.core.designsystem.theme.red
 import com.easylife.diary.core.designsystem.theme.white
 
 /**
  * Created by erenalpaslan on 25.12.2022
  */
-enum class Themes(val theme: Theme) {
+enum class Themes(val diaryTheme: DiaryTheme) {
     HONEY(
-        Theme(
+        DiaryTheme(
             id = 1,
             name = "Honey Theme",
             colorScheme = DefaultColorScheme,
@@ -29,7 +28,7 @@ enum class Themes(val theme: Theme) {
         )
     ),
     DARK(
-        Theme(
+        DiaryTheme(
             id = 2,
             name = "Dark Theme",
             colorScheme = darkColorScheme(
@@ -41,7 +40,7 @@ enum class Themes(val theme: Theme) {
         )
     ),
     PINK(
-        Theme(
+        DiaryTheme(
             id = 2,
             name = "Pink Theme",
             colorScheme = lightColorScheme(
@@ -58,7 +57,7 @@ enum class Themes(val theme: Theme) {
     );
 
     companion object {
-        infix fun from(id: Int): Theme? = Themes.values().firstOrNull { it.theme.id == id }?.theme
-        fun getThemes(): List<Theme> = Themes.values().map { it.theme }
+        infix fun from(id: Int): DiaryTheme? = Themes.values().firstOrNull { it.diaryTheme.id == id }?.diaryTheme
+        fun getThemes(): List<DiaryTheme> = Themes.values().map { it.diaryTheme }
     }
 }
