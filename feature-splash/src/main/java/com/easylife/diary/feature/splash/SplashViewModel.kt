@@ -26,7 +26,7 @@ class SplashViewModel @Inject constructor(
     }
 
     val uiState: StateFlow<SplashUiState> = shouldShowThemeSelection.map {
-        if (it)
+        if (!it)
             SplashUiState.NewComer
         else
             SplashUiState.OnBoardedUser

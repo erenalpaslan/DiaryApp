@@ -2,6 +2,8 @@ package com.easylife.diary.feature.theme
 
 import androidx.lifecycle.viewModelScope
 import com.easylife.diary.core.designsystem.base.BaseViewModel
+import com.easylife.diary.core.preferences.PreferencesKeys
+import com.easylife.diary.core.preferences.PreferencesManager
 import com.easylife.diary.feature.theme.util.DiaryTheme
 import com.easylife.diary.feature.theme.util.DiaryThemeObservable
 import com.easylife.diary.feature.theme.util.Themes
@@ -17,7 +19,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class ThemeViewModel @Inject constructor(
-    private val diaryThemeObservable: DiaryThemeObservable
+    private val diaryThemeObservable: DiaryThemeObservable,
+    private val preferencesManager: PreferencesManager
 ) : BaseViewModel() {
 
     private val _uiState: MutableStateFlow<ThemeUiState> = MutableStateFlow(ThemeUiState.Loading)
@@ -36,6 +39,8 @@ class ThemeViewModel @Inject constructor(
     fun onApplyClicked(diaryTheme: DiaryTheme?) {
         viewModelScope.launch {
             diaryThemeObservable.postValue(diaryTheme)
+            preferencesManager.setInt(PreferencesKeys.SELECTED_THEME_ID, diaryTheme?.id ?: 1)
+            preferencesManager.setBoolean(PreferencesKeys.IS_FIRST_ENTER, false)
             _uiState.update {
                 ThemeUiState.ThemeApplied
             }

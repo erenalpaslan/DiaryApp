@@ -31,12 +31,23 @@ class PreferencesManager(private val context: Context) {
 
     suspend fun getInt(
         key: Preferences.Key<Int>,
-        defaultValue: Int = 0
+        defaultValue: Int = -1
     ): Int = context.dataStore.data.map {
         it[key] ?: defaultValue
     }.first()
 
     suspend fun setInt(key: Preferences.Key<Int>, value: Int) {
+        context.dataStore.edit { it[key] = value }
+    }
+
+    suspend fun getString(
+        key: Preferences.Key<String>,
+        defaultValue: String? = null
+    ): String? = context.dataStore.data.map {
+        it[key] ?: defaultValue
+    }.first()
+
+    suspend fun setString(key: Preferences.Key<String>, value: String) {
         context.dataStore.edit { it[key] = value }
     }
 }
