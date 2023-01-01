@@ -40,7 +40,11 @@ fun NavGraph(navController: NavHostController) {
             }
         )
 
-        mainScreen()
+        mainScreen(
+            navigateToTheme = {
+                navController.navigateToTheme()
+            }
+        )
         /*composable(route = Screen.Splash.route) {
             get<SplashScreen>().Create(
                 viewModel = getViewModel(),

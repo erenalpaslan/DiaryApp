@@ -41,7 +41,7 @@ enum class Themes(val diaryTheme: DiaryTheme) {
     ),
     PINK(
         DiaryTheme(
-            id = 2,
+            id = 3,
             name = "Pink Theme",
             colorScheme = lightColorScheme(
                 primary = oldLace,

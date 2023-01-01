@@ -49,6 +49,7 @@ dependencies {
 
     //region Cores
     implementation(project(":core-designsystem"))
+    implementation(project(":core-preferences"))
     //endregion
 
     //region Accompanist
