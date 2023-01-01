@@ -30,5 +30,4 @@ class MainViewModel @Inject constructor(
             diaryThemeObservable.postValue(selectedTheme)
         }
     }
-
 }
