@@ -33,7 +33,7 @@ class ThemeScreen(
     val navigateToMain: () -> Unit
 ) : BaseScreen<ThemeViewModel>() {
     @Composable
-    override fun Content() {
+    override fun Screen() {
         val themeUiState by viewModel.uiState.collectAsStateWithLifecycle()
         ThemeContent(themeUiState = themeUiState)
     }
