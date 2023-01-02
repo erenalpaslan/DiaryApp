@@ -25,6 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.easylife.diary.core.designsystem.base.BaseScreen
 import com.easylife.diary.core.designsystem.theme.red
+import com.easylife.diary.feature.diary.components.DiaryEmptyScreen
+import com.easylife.diary.feature.diary.components.DiaryScreenDataList
+import com.easylife.diary.feature.diary.components.DiaryScreenTopBar
 
 /**
  * Created by erenalpaslan on 1.01.2023
@@ -42,52 +45,26 @@ class DiaryScreen: BaseScreen<DiaryViewModel>() {
     fun Content(uiState: DiaryUiState) {
         Scaffold(
             topBar = {
-                if (uiState.searching) {
-                    androidx.compose.material.TopAppBar(
-                        title = {
-                            Text(text = "Search")
-                        },
-                        navigationIcon = {
-                            IconButton(onClick = {
-                                viewModel.onClearSearchClicked()
-                            }) {
-                                Icon(
-                                    imageVector = Icons.Rounded.ArrowBackIosNew,
-                                    contentDescription = "Back Arrow"
-                                )
-                            }
-                        },
-                        backgroundColor = MaterialTheme.colorScheme.background
-                    )
-                } else {
-                    androidx.compose.material.TopAppBar(
-                        title = {
-                            Text(text = "Diary")
-                        },
-                        actions = {
-                            IconButton(onClick = {
-                                viewModel.onSearchClicked()
-                            }) {
-                                Icon(
-                                    imageVector = Icons.Rounded.Search,
-                                    contentDescription = "Search Icon"
-                                )
-                            }
-                        },
-                        backgroundColor = MaterialTheme.colorScheme.background
-                    )
-                }
+                DiaryScreenTopBar(onSearched = {
+
+                })
             }
         ) {
             Column(modifier = Modifier
                 .padding(it)
                 .fillMaxSize()
             ) {
-                Button(onClick = { }) {
-                    Text(text = "To Theme")
+                when(uiState) {
+                    DiaryUiState.Loading -> {}
+                    DiaryUiState.EmptyDiary -> DiaryEmptyScreen()
+                    is DiaryUiState.DataLoaded -> {
+                        DiaryScreenDataList(uiState.data)
+                    }
                 }
             }
         }
     }
+
+
     
 }

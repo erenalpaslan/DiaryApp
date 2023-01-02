@@ -10,5 +10,6 @@ dependencies {
     implementation(project("feature-calendar"))
     implementation(project("feature-insight"))
     implementation(project("feature-setting"))
+    implementation(project(":feature-theme"))
 
 }

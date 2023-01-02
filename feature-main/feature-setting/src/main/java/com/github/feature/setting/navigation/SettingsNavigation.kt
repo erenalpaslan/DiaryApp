@@ -18,8 +18,14 @@ fun NavController.navigateToSettings(navOptions: NavOptions? = null) {
 }
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.settingsScreen() {
+fun NavGraphBuilder.settingsScreen(
+    navigateToTheme: () -> Unit
+) {
     composable(route = settingsRoute) {
-        SettingsScreen().Create(viewModel = hiltViewModel())
+        SettingsScreen(
+            navigateToTheme = {
+                navigateToTheme()
+            }
+        ).Create(viewModel = hiltViewModel())
     }
 }

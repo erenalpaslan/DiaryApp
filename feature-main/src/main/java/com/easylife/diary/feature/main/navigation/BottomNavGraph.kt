@@ -10,6 +10,8 @@ import com.easylife.diary.feature.calendar.navigation.calendarScreen
 import com.easylife.diary.feature.diary.navigation.diaryRoute
 import com.easylife.diary.feature.diary.navigation.diaryScreen
 import com.easylife.diary.feature.insight.navigation.insightsScreen
+import com.easylife.diary.feature.theme.navigation.navigateToTheme
+import com.easylife.diary.feature.theme.navigation.themeScreen
 import com.github.feature.setting.navigation.settingsScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 
@@ -20,7 +22,8 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 @Composable
 fun BottomNavGraph(
     navController: NavHostController,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    navigateToTheme: () -> Unit
 ) {
     AnimatedNavHost(
         navController = navController,
@@ -30,6 +33,13 @@ fun BottomNavGraph(
         diaryScreen()
         calendarScreen()
         insightsScreen()
-        settingsScreen()
+        settingsScreen(
+            navigateToTheme = {
+                navigateToTheme()
+            }
+        )
+        themeScreen {
+            navController.popBackStack()
+        }
     }
 }
