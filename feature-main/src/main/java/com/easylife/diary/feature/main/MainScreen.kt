@@ -30,7 +30,8 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
  * Created by erenalpaslan on 27.12.2022
  */
 class MainScreen(
-    val navigateToTheme: () -> Unit
+    val navigateToTheme: () -> Unit,
+    val navigateToNote: () -> Unit
 ) : BaseScreen<MainViewModel>() {
     @Composable
     override fun Screen() {
@@ -71,7 +72,9 @@ class MainScreen(
                     },
                     floatingActionButton = {
                         FloatingActionButton(
-                            onClick = { /* do something */ },
+                            onClick = {
+                                navigateToNote()
+                            },
                             containerColor = MaterialTheme.colorScheme.primary,
                             elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
                         ) {
@@ -84,10 +87,11 @@ class MainScreen(
         ) {
             BottomNavGraph(
                 navController = bottomNavController,
-                paddingValues = it
-            ) {
-                navigateToTheme()
-            }
+                paddingValues = it,
+                navigateToTheme = {
+                    navigateToTheme()
+                }
+            )
         }
     }
 }

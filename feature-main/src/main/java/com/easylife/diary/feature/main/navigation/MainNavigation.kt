@@ -19,12 +19,16 @@ fun NavController.navigateToMain(navOptions: NavOptions? = null) {
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.mainScreen(
-    navigateToTheme: () -> Unit
+    navigateToTheme: () -> Unit,
+    navigateToNote: () -> Unit
 ) {
     composable(route = mainRoute) {
         MainScreen(
             navigateToTheme = {
                 navigateToTheme()
+            },
+            navigateToNote = {
+                navigateToNote()
             }
         ).Create(
             viewModel = hiltViewModel()
