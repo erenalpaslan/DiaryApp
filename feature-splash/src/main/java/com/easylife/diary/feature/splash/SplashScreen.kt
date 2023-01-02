@@ -27,7 +27,7 @@ class SplashScreen(
 ) : BaseScreen<SplashViewModel>() {
     @OptIn(ExperimentalLifecycleComposeApi::class)
     @Composable
-    override fun Content() {
+    override fun Screen() {
         val splashUiState by viewModel.uiState.collectAsStateWithLifecycle()
         when(splashUiState) {
             SplashUiState.Loading -> {}

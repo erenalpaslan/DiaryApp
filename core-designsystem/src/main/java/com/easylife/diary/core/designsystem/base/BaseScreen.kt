@@ -1,7 +1,6 @@
 package com.easylife.diary.core.designsystem.base
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -11,7 +10,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.navigation.NavController
 
 /**
  * Created by erenalpaslan on 11.08.2022
@@ -52,7 +50,7 @@ abstract class BaseScreen<VM : BaseViewModel> {
 
         val showProgress by viewModel.showProgress.observeAsState()
 
-        Content()
+        Screen()
         if (showProgress == true ){
             Dialog(onDismissRequest = { /*TODO*/ }) {
                 CircularProgressIndicator()
@@ -61,5 +59,5 @@ abstract class BaseScreen<VM : BaseViewModel> {
     }
 
     @Composable
-    abstract fun Content()
+    abstract fun Screen()
 }

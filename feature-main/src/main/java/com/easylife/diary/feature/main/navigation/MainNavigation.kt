@@ -22,10 +22,6 @@ fun NavGraphBuilder.mainScreen(
     navigateToTheme: () -> Unit
 ) {
     composable(route = mainRoute) {
-        MainScreen(
-            navigateToTheme = {
-                navigateToTheme()
-            }
-        ).Create(viewModel = hiltViewModel())
+        MainScreen().Create(viewModel = hiltViewModel())
     }
 }

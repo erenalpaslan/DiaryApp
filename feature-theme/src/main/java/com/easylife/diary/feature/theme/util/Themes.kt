@@ -48,6 +48,7 @@ enum class Themes(val diaryTheme: DiaryTheme) {
                 onPrimary = black,
                 background = lightRed,
                 onBackground = black,
+                surface = americanPink,
                 surfaceVariant = mistyRose,
                 onSurfaceVariant = white
             ),

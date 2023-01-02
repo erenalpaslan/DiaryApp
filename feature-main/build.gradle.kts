@@ -6,4 +6,9 @@ plugins {
 }
 
 dependencies {
+    implementation(project("feature-diary"))
+    implementation(project("feature-calendar"))
+    implementation(project("feature-insight"))
+    implementation(project("feature-setting"))
+
 }
