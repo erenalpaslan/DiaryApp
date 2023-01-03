@@ -2,6 +2,7 @@ package com.easylife.diary.feature.main.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

@@ -41,7 +41,8 @@ fun DiaryScreenTopBar(
                     )
                 }
             },
-            backgroundColor = MaterialTheme.colorScheme.background
+            backgroundColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground
         )
     }else {
         androidx.compose.material.TopAppBar(
@@ -58,7 +59,8 @@ fun DiaryScreenTopBar(
                     )
                 }
             },
-            backgroundColor = MaterialTheme.colorScheme.background
+            backgroundColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground
         )
     }
 }
