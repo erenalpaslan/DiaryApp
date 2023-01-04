@@ -45,7 +45,7 @@ fun BottomNavigationItem(
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                         bottom.linkTo(iconRef.bottom)
-                        width = Dimension.fillToConstraints
+                        width = Dimension.value(40.dp)
                         height = Dimension.value(26.dp)
                     }
                     .clip(CircleShape)

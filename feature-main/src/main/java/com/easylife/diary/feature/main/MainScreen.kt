@@ -9,6 +9,7 @@ import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +29,10 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 /**
  * Created by erenalpaslan on 27.12.2022
  */
-class MainScreen() : BaseScreen<MainViewModel>() {
+class MainScreen(
+    val navigateToTheme: () -> Unit,
+    val navigateToNote: () -> Unit
+) : BaseScreen<MainViewModel>() {
     @Composable
     override fun Screen() {
         Content()
@@ -68,9 +72,11 @@ class MainScreen() : BaseScreen<MainViewModel>() {
                     },
                     floatingActionButton = {
                         FloatingActionButton(
-                            onClick = { /* do something */ },
-                            containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                            onClick = {
+                                navigateToNote()
+                            },
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
                         ) {
                             Icon(Icons.Filled.Add, "Fab")
                         }
@@ -81,7 +87,10 @@ class MainScreen() : BaseScreen<MainViewModel>() {
         ) {
             BottomNavGraph(
                 navController = bottomNavController,
-                paddingValues = it
+                paddingValues = it,
+                navigateToTheme = {
+                    navigateToTheme()
+                }
             )
         }
     }

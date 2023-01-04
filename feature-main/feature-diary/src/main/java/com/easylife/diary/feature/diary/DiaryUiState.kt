@@ -3,7 +3,14 @@ package com.easylife.diary.feature.diary
 /**
  * Created by erenalpaslan on 1.01.2023
  */
-data class DiaryUiState(
-    val datas: List<String> = emptyList(),
-    val searching: Boolean = false
-)
+sealed interface DiaryUiState {
+
+    object Loading : DiaryUiState
+
+    object EmptyDiary: DiaryUiState
+
+    data class DataLoaded(
+        val data: List<String> = emptyList(),
+        val currentDate: String? = null
+    ): DiaryUiState
+}

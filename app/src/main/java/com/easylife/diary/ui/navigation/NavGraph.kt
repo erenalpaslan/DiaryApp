@@ -9,6 +9,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import com.easylife.diary.feature.main.navigation.mainScreen
 import com.easylife.diary.feature.main.navigation.navigateToMain
+import com.easylife.diary.feature.note.navigation.navigateToNote
+import com.easylife.diary.feature.note.navigation.noteScreen
 import com.easylife.diary.feature.theme.navigation.navigateToTheme
 import com.easylife.diary.feature.theme.navigation.themeScreen
 import com.easylife.diary.feature.splash.navigation.splashRoute
@@ -43,8 +45,12 @@ fun NavGraph(navController: NavHostController) {
         mainScreen(
             navigateToTheme = {
                 navController.navigateToTheme()
+            },
+            navigateToNote = {
+                navController.navigateToNote()
             }
         )
+        noteScreen()
         /*composable(route = Screen.Splash.route) {
             get<SplashScreen>().Create(
                 viewModel = getViewModel(),

@@ -16,23 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DiaryViewModel @Inject constructor(): BaseViewModel() {
 
-    private val _uiState: MutableStateFlow<DiaryUiState> = MutableStateFlow(DiaryUiState())
+    private val _uiState: MutableStateFlow<DiaryUiState> = MutableStateFlow(DiaryUiState.EmptyDiary)
     val uiSate: StateFlow<DiaryUiState> = _uiState.asStateFlow()
-
-    fun onSearchClicked() {
-        viewModelScope.launch {
-            _uiState.update {
-                it.copy(searching = true)
-            }
-        }
-    }
-
-    fun onClearSearchClicked() {
-        viewModelScope.launch {
-            _uiState.update {
-                it.copy(searching = false)
-            }
-        }
-    }
 
 }
