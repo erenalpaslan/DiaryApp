@@ -44,13 +44,17 @@ dependencies {
     //region Features
     implementation(project(":feature-splash"))
     implementation(project(":feature-theme"))
-    implementation(project(":feature-main"))
     implementation(project(":feature-note"))
+    implementation(project(":feature-diary"))
+    implementation(project(":feature-calendar"))
+    implementation(project(":feature-insight"))
+    implementation(project(":feature-setting"))
     //endregion
 
     //region Cores
     implementation(project(":core-designsystem"))
     implementation(project(":core-preferences"))
+    implementation(project(":core-navigation"))
     //endregion
 
     //region Accompanist

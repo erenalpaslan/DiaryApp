@@ -29,9 +29,7 @@ import com.google.accompanist.pager.rememberPagerState
 /**
  * Created by erenalpaslan on 19.12.2022
  */
-class ThemeScreen(
-    val navigateToMain: () -> Unit
-) : BaseScreen<ThemeViewModel>() {
+class ThemeScreen() : BaseScreen<ThemeViewModel>() {
     @Composable
     override fun Screen() {
         val themeUiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -48,7 +46,9 @@ class ThemeScreen(
             mutableStateOf<DiaryTheme?>(null)
         }
         when (themeUiState) {
-            ThemeUiState.Error -> navigateToMain()
+            ThemeUiState.Error -> {
+                navigator.popBackStack()
+            }
             ThemeUiState.Loading -> Unit
             is ThemeUiState.Success -> {
                 Scaffold(
@@ -116,7 +116,7 @@ class ThemeScreen(
             }
 
             ThemeUiState.ThemeApplied -> {
-                navigateToMain()
+                navigator.popBackStack()
             }
         }
 

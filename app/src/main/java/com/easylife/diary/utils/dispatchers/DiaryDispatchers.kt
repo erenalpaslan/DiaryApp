@@ -1,6 +1,5 @@
 package com.easylife.diary.utils.dispatchers
 
-import com.easylife.diary.utils.dispatchers.IDiaryDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 

@@ -5,6 +5,8 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":core-navigation"))
+
     val composeBom = platform(libs.androidx.compose.bom)
     api(composeBom)
     api(libs.androidx.activity.compose)

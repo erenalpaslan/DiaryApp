@@ -10,6 +10,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.easylife.diary.core.navigation.DiaryNavigator
 
 /**
  * Created by erenalpaslan on 11.08.2022
@@ -20,11 +21,13 @@ abstract class BaseScreen<VM : BaseViewModel> {
     //protected val analyticsManager: AnalyticsManager by inject()
     protected lateinit var viewModel: VM
     protected lateinit var focusManager: FocusManager
+    protected lateinit var navigator: DiaryNavigator
 
     @Composable
-    fun Create(viewModel: VM) {
+    fun Create(navigator: DiaryNavigator, viewModel: VM) {
         this@BaseScreen.viewModel = viewModel
         this@BaseScreen.focusManager = LocalFocusManager.current
+        this@BaseScreen.navigator = navigator
 
         val error by viewModel.error.observeAsState()
 
