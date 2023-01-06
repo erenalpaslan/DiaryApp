@@ -7,6 +7,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import com.easylife.diary.core.navigation.DiaryNavigator
 import com.easylife.diary.core.navigation.screen.DiaryRoutes.settingsRoute
+import com.easylife.diary.delete.data.navigation.deleteDataScreen
+import com.easylife.diary.password.navigation.passwordScreen
 import com.github.feature.setting.SettingsScreen
 import com.google.accompanist.navigation.animation.composable
 
@@ -27,4 +29,6 @@ fun NavGraphBuilder.settingsScreen(
             viewModel = hiltViewModel()
         )
     }
+    passwordScreen(navigator)
+    deleteDataScreen(navigator)
 }

@@ -12,7 +12,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,6 +22,8 @@ import com.easylife.diary.core.designsystem.base.BaseScreen
 import com.easylife.diary.core.designsystem.components.NavigationButton
 import com.easylife.diary.core.designsystem.R
 import com.easylife.diary.core.designsystem.components.FeedbackComposable
+import com.easylife.diary.core.navigation.screen.DiaryRoutes
+import com.github.feature.setting.components.NameDialog
 
 /**
  * Created by erenalpaslan on 1.01.2023
@@ -32,6 +33,9 @@ class SettingsScreen : BaseScreen<SettingsViewModel>() {
     override fun Screen() {
         val scrollableState = rememberScrollState()
         var showFeedback by remember {
+            mutableStateOf(false)
+        }
+        var showNameDialog by remember {
             mutableStateOf(false)
         }
 
@@ -60,14 +64,14 @@ class SettingsScreen : BaseScreen<SettingsViewModel>() {
                     title = "Your name",
                     icon = R.drawable.ic_user
                 ) {
-
+                    showNameDialog = true
                 }
                 Divider()
                 NavigationButton(
                     title = "Password (PIN)",
                     icon = R.drawable.ic_lock
                 ) {
-
+                    navigator.navigate(DiaryRoutes.passwordRoute)
                 }
                 Divider()
                 NavigationButton(
@@ -93,7 +97,7 @@ class SettingsScreen : BaseScreen<SettingsViewModel>() {
                     title = "Delete app data",
                     icon = R.drawable.ic_trash
                 ) {
-
+                    navigator.navigate(DiaryRoutes.deleteDataRoute)
                 }
                 Spacer(modifier = Modifier.height(36.dp))
                 Text(
@@ -154,6 +158,12 @@ class SettingsScreen : BaseScreen<SettingsViewModel>() {
                     //TODO Send Button clicked
                 }
             )
+        }
+
+        if (showNameDialog) {
+            NameDialog(onDismiss = { showNameDialog = false }, onSaveClicked = {
+
+            })
         }
     }
 }

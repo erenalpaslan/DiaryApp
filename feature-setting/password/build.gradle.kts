@@ -6,6 +6,4 @@ plugins {
 }
 
 dependencies {
-    implementation(project("password"))
-    implementation(project("delete-data"))
 }
