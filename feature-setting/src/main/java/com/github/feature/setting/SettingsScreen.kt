@@ -12,11 +12,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.easylife.diary.core.designsystem.base.BaseScreen
 import com.easylife.diary.core.designsystem.components.NavigationButton
 import com.easylife.diary.core.designsystem.R
+import com.easylife.diary.core.designsystem.components.FeedbackComposable
 
 /**
  * Created by erenalpaslan on 1.01.2023
@@ -25,6 +31,10 @@ class SettingsScreen : BaseScreen<SettingsViewModel>() {
     @Composable
     override fun Screen() {
         val scrollableState = rememberScrollState()
+        var showFeedback by remember {
+            mutableStateOf(false)
+        }
+
 
         Scaffold(
             topBar = {
@@ -107,14 +117,14 @@ class SettingsScreen : BaseScreen<SettingsViewModel>() {
                     title = "Share with friends",
                     icon = R.drawable.ic_share
                 ) {
-
+                    //ShareAppHelper.openShareApp(activity)
                 }
                 Divider()
                 NavigationButton(
                     title = "Help and Feedback",
                     icon = R.drawable.ic_help
                 ) {
-
+                    showFeedback = true
                 }
                 Divider()
                 NavigationButton(
@@ -133,6 +143,17 @@ class SettingsScreen : BaseScreen<SettingsViewModel>() {
                 Spacer(modifier = Modifier.height(36.dp))
 
             }
+        }
+
+        if (showFeedback) {
+            FeedbackComposable(
+                onDismiss = {
+                    showFeedback = false
+                },
+                onSendClicked = {
+                    //TODO Send Button clicked
+                }
+            )
         }
     }
 }
