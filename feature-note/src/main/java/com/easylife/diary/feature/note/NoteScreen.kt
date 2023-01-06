@@ -57,7 +57,7 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                     title = {},
                     navigationIcon = {
                         IconButton(onClick = {
-
+                            navigator.popBackStack()
                         }) {
                             Icon(
                                 imageVector = Icons.Rounded.ArrowBackIosNew,
@@ -71,6 +71,7 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
             ConstraintLayout(
                 modifier = Modifier
                     .padding(it)
+                    .padding(top = 16.dp)
                     .fillMaxSize()
             ) {
                 val (dateRef, inputFieldRef, bottomRef) = createRefs()
