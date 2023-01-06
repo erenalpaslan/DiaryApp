@@ -7,6 +7,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
@@ -27,7 +30,7 @@ fun DiaryScreenTopBar(
     }
 
     if (isSearching) {
-        androidx.compose.material.TopAppBar(
+        TopAppBar(
             title = {
                 Text(text = "Search")
             },
@@ -41,11 +44,14 @@ fun DiaryScreenTopBar(
                     )
                 }
             },
-            backgroundColor = MaterialTheme.colorScheme.background,
-            contentColor = MaterialTheme.colorScheme.onBackground
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.background,
+                titleContentColor = contentColorFor(backgroundColor = MaterialTheme.colorScheme.background),
+                actionIconContentColor = contentColorFor(backgroundColor = MaterialTheme.colorScheme.background)
+            )
         )
     }else {
-        androidx.compose.material.TopAppBar(
+        TopAppBar(
             title = {
                 Text(text = "Diary")
             },
@@ -59,8 +65,11 @@ fun DiaryScreenTopBar(
                     )
                 }
             },
-            backgroundColor = MaterialTheme.colorScheme.background,
-            contentColor = MaterialTheme.colorScheme.onBackground
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.background,
+                titleContentColor = contentColorFor(backgroundColor = MaterialTheme.colorScheme.background),
+                actionIconContentColor = contentColorFor(backgroundColor = MaterialTheme.colorScheme.background)
+            )
         )
     }
 }

@@ -1,8 +1,13 @@
 package com.easylife.diary.feature.theme
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -20,6 +25,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.easylife.diary.core.designsystem.base.BaseScreen
+import com.easylife.diary.core.navigation.screen.DiaryRoutes
 import com.easylife.diary.feature.theme.util.DiaryTheme
 import com.easylife.diary.feature.theme.component.ThemeItem
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -47,7 +53,7 @@ class ThemeScreen() : BaseScreen<ThemeViewModel>() {
         }
         when (themeUiState) {
             ThemeUiState.Error -> {
-                navigator.popBackStack()
+                navigateToMain()
             }
             ThemeUiState.Loading -> Unit
             is ThemeUiState.Success -> {
@@ -116,9 +122,19 @@ class ThemeScreen() : BaseScreen<ThemeViewModel>() {
             }
 
             ThemeUiState.ThemeApplied -> {
-                navigator.popBackStack()
+                navigateToMain()
             }
         }
 
+    }
+
+    private fun navigateToMain() {
+        navigator.navigate(DiaryRoutes.diaryRoute) {
+            popUpTo(0) {
+                inclusive = true
+            }
+
+            launchSingleTop = true
+        }
     }
 }

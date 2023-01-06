@@ -46,12 +46,13 @@ class SplashViewModel @Inject constructor(
             ).collect {
                 when (it) {
                     SplashUiState.Loading -> {}
-                    SplashUiState.NewComer -> navigator.popUpTo(
-                        DiaryRoutes.themeRoute,
-                        DiaryRoutes.splashRoute,
-                        true
-                    )
-                    SplashUiState.OnBoardedUser -> navigator.navigate(DiaryRoutes.diaryRoute)
+                    SplashUiState.NewComer -> navigator.navigate(DiaryRoutes.themeRoute)
+                    SplashUiState.OnBoardedUser -> navigator.navigate(DiaryRoutes.diaryRoute) {
+                        popUpTo(DiaryRoutes.splashRoute) {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
                 }
             }
         }

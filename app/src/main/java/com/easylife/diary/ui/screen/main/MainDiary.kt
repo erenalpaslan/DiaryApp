@@ -2,6 +2,7 @@ package com.easylife.diary.ui.screen.main
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
@@ -15,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
@@ -31,7 +33,6 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 /**
  * Created by erenalpaslan on 5.01.2023
  */
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainDiary(
     navController: NavHostController,
@@ -82,7 +83,8 @@ fun MainDiary(
                     contentPadding = PaddingValues(start = 11.dp)
                 )
             }
-        }
+        },
+        modifier = Modifier.fillMaxSize()
     ) {
         DiaryNavHost(
             navigator = navigator,
