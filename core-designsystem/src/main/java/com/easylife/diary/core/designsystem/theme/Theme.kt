@@ -28,5 +28,6 @@ val DefaultColorScheme = lightColorScheme(
     surface = alabaster,
     onSurface = outerSpace,
     surfaceVariant = white,
-    onSurfaceVariant = darkGray
+    onSurfaceVariant = darkGray,
+    outlineVariant = gray
 )

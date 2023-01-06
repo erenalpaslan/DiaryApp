@@ -83,8 +83,7 @@ fun MainDiary(
                     contentPadding = PaddingValues(start = 11.dp)
                 )
             }
-        },
-        modifier = Modifier.fillMaxSize()
+        }
     ) {
         DiaryNavHost(
             navigator = navigator,

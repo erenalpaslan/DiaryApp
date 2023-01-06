@@ -35,7 +35,7 @@ fun DiaryNavHost(
         startDestination = splashRoute,
         modifier = Modifier.windowInsetsPadding(
             WindowInsets.systemBars.only(
-                WindowInsetsSides.Horizontal
+                WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
             )
         )
     ) {
