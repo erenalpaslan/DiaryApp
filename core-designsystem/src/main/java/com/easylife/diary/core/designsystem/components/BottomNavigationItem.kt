@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -31,7 +32,8 @@ import com.easylife.diary.core.designsystem.theme.red
 @Composable
 fun BottomNavigationItem(
     selected: Boolean,
-    icon: ImageVector,
+    icon: Int,
+    selectedIcon: Int,
     label: String,
     onClick: () -> Unit
 ) {
@@ -60,27 +62,25 @@ fun BottomNavigationItem(
                 end.linkTo(parent.end)
             }
         ) {
-            Icon(imageVector = icon, contentDescription = "Tab Icon")
+            Icon(
+                painter = painterResource(
+                    id = if (selected)
+                        selectedIcon
+                    else
+                        icon
+                ), contentDescription = "Tab Icon"
+            )
         }
         Text(
             text = label,
-            modifier = Modifier.constrainAs(labelRef) {
-                  top.linkTo(iconRef.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-            }.padding(horizontal = 5.dp),
+            modifier = Modifier
+                .constrainAs(labelRef) {
+                    top.linkTo(iconRef.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .padding(horizontal = 5.dp),
         )
     }
 
-}
-
-@Preview
-@Composable
-fun BottomNavigationItemPreview() {
-    BottomNavigationItem(
-        selected = true,
-        icon = Icons.Rounded.Description,
-        label = "Diary"
-    ) {
-    }
 }

@@ -6,6 +6,7 @@ import androidx.compose.material.icons.rounded.Description
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.TipsAndUpdates
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.easylife.diary.R
 import com.easylife.diary.core.navigation.screen.DiaryRoutes.calendarRoute
 import com.easylife.diary.core.navigation.screen.DiaryRoutes.diaryRoute
 import com.easylife.diary.core.navigation.screen.DiaryRoutes.insightsRoute
@@ -16,27 +17,32 @@ import com.easylife.diary.core.navigation.screen.DiaryRoutes.settingsRoute
  */
 enum class BottomNavScreen(
     val route: String,
-    val icon: ImageVector,
+    val icon: Int,
+    val selectedIcon: Int,
     val label: String
 ) {
     DIARY(
         diaryRoute,
-        Icons.Rounded.Description,
+        R.drawable.ic_diary,
+        R.drawable.ic_fill_diary,
         "Diary"
     ),
     CALENDAR(
         calendarRoute,
-        Icons.Rounded.CalendarMonth,
+        R.drawable.ic_calendar,
+        R.drawable.ic_fill_calendar,
         "Calendar"
     ),
     INSIGHTS(
         insightsRoute,
-        Icons.Rounded.TipsAndUpdates,
+        R.drawable.ic_insights,
+        R.drawable.ic_fill_insights,
         "Insights"
     ),
     SETTINGS(
         settingsRoute,
-        Icons.Rounded.Settings,
+        R.drawable.ic_settings,
+        R.drawable.ic_fill_settings,
         "Settings"
     );
 

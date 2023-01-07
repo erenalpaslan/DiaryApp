@@ -65,6 +65,7 @@ fun MainDiary(
                                     currentRoute = bottomNavScreen.route
                                 },
                                 icon = bottomNavScreen.icon,
+                                selectedIcon = bottomNavScreen.selectedIcon,
                                 label = bottomNavScreen.label,
                             )
                         }
