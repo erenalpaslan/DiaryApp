@@ -65,6 +65,7 @@ fun MainDiary(
                                     currentRoute = bottomNavScreen.route
                                 },
                                 icon = bottomNavScreen.icon,
+                                selectedIcon = bottomNavScreen.selectedIcon,
                                 label = bottomNavScreen.label,
                             )
                         }
@@ -83,8 +84,7 @@ fun MainDiary(
                     contentPadding = PaddingValues(start = 11.dp)
                 )
             }
-        },
-        modifier = Modifier.fillMaxSize()
+        }
     ) {
         DiaryNavHost(
             navigator = navigator,

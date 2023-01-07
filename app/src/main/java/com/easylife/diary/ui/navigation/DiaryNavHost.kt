@@ -4,6 +4,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
@@ -33,10 +35,8 @@ fun DiaryNavHost(
     AnimatedNavHost(
         navController = navController,
         startDestination = splashRoute,
-        modifier = Modifier.windowInsetsPadding(
-            WindowInsets.systemBars.only(
-                WindowInsetsSides.Horizontal
-            )
+        modifier = Modifier.padding(
+            bottom = paddingValues.calculateBottomPadding()
         )
     ) {
         splashScreen(navigator)
