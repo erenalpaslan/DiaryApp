@@ -32,6 +32,11 @@ enum class MoodTypes(
         5,
         "Happy",
         0
-    ),
+    );
+
+    companion object {
+        fun get(): List<MoodTypes> = MoodTypes.values().toList()
+        fun from(id: Int) = MoodTypes.values().firstOrNull { it.id == id }
+    }
 
 }

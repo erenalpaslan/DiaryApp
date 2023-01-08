@@ -8,9 +8,13 @@ import com.easylife.diary.core.model.DiaryNote
  * Created by erenalpaslan on 8.01.2023
  */
 data class NoteUiState(
-    val doneVisible: Boolean = false,
-    val title: MutableState<String> = mutableStateOf(""),
-    val description: MutableState<String> = mutableStateOf(""),
-    val date: String? = "",
-    val moodIcon: Int = -1
-)
+    var doneVisible: Boolean = false,
+    var title: String? = null,
+    var description: String? = null,
+    var date: String? = "",
+    var moodIcon: Int = -1
+) {
+    fun isChanged(): Boolean {
+        return !title.isNullOrEmpty() || !description.isNullOrEmpty() || moodIcon != -1
+    }
+}

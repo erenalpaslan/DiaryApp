@@ -1,5 +1,6 @@
 package com.easylife.diary.feature.note
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,6 +47,7 @@ import com.easylife.diary.core.designsystem.base.BaseScreen
 import com.easylife.diary.core.designsystem.components.DiaryEntryTextField
 import com.easylife.diary.core.designsystem.components.DiaryTitleTextField
 import com.easylife.diary.core.designsystem.theme.red
+import com.easylife.diary.feature.note.components.MoodDialog
 import com.easylife.diary.feature.note.components.NoteTopBar
 
 /**
@@ -54,17 +56,20 @@ import com.easylife.diary.feature.note.components.NoteTopBar
 class NoteScreen : BaseScreen<NoteViewModel>() {
     @Composable
     override fun Screen() {
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle(NoteUiState())
         Content(uiState)
     }
 
     @Composable
     fun Content(uiState: NoteUiState) {
+        val showMoodDialogState = remember {
+            mutableStateOf(false)
+        }
+
         Scaffold(
             topBar = {
                 NoteTopBar(
-                    uiState = uiState,
+                    doneVisible = uiState.doneVisible,
                     navigator = navigator
                 )
             }
@@ -96,8 +101,12 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                     width = Dimension.fillToConstraints
                     height = Dimension.fillToConstraints
                 }) {
-                    DiaryTitleTextField(uiState.title)
-                    DiaryEntryTextField(uiState.description)
+                    DiaryTitleTextField(uiState.title) {title ->
+                        viewModel.onTitleChanged(title)
+                    }
+                    DiaryEntryTextField(uiState.description) {description ->
+                        viewModel.onDescriptionChanged(description)
+                    }
                 }
                 Column(modifier = Modifier.constrainAs(bottomRef) {
                     bottom.linkTo(parent.bottom)
@@ -109,7 +118,7 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                     Spacer(modifier = Modifier.height(10.dp))
                     Row(modifier = Modifier.padding(horizontal = 16.dp)) {
                         OutlinedIconButton(
-                            onClick = { /*TODO*/ },
+                            onClick = { showMoodDialogState.value = true },
                             shape = MaterialTheme.shapes.small
                         ) {
                             Icon(
@@ -130,6 +139,13 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                 }
             }
         }
+
+        MoodDialog(
+            show = showMoodDialogState,
+            onMoodSelected = {
+                viewModel.onMoodSelected(it)
+            }
+        )
     }
 
     companion object {

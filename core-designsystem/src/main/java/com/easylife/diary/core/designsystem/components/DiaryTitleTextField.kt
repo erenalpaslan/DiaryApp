@@ -16,13 +16,14 @@ import androidx.compose.ui.text.TextStyle
  */
 @Composable
 fun DiaryTitleTextField(
-    title: MutableState<String>
+    title: String?,
+    onTextChanged: (String?) -> Unit
 ) {
     TextField(
-        value = title.value,
+        value = title ?: "",
         onValueChange = { newTitle ->
             if (newTitle.length < 64)
-                title.value = newTitle
+                onTextChanged(newTitle)
         },
         placeholder = {
             Text(
