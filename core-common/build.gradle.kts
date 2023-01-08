@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":core-model"))
     implementation(libs.core.ktx)
     implementation(libs.androidx.livedata)
 }

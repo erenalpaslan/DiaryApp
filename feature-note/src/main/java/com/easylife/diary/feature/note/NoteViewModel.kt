@@ -1,17 +1,15 @@
 package com.easylife.diary.feature.note
 
-import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
+import com.easylife.diary.core.common.util.DateUtil
+import com.easylife.diary.core.common.util.DateUtil.formattedDate
 import com.easylife.diary.core.designsystem.base.BaseViewModel
 import com.easylife.diary.core.model.DiaryNote
-import com.easylife.diary.core.model.enums.MoodTypes
+import com.easylife.diary.feature.note.enums.MoodTypes
 import com.easylife.diary.core.navigation.DiaryNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -40,8 +38,8 @@ class NoteViewModel @Inject constructor(
                 it.copy(
                     title = diaryNote?.title ?: "",
                     description = diaryNote?.description ?: "",
-                    date = diaryNote?.date?.toString(),
-                    moodIcon = diaryNote?.moodId ?: -1
+                    date = diaryNote?.date?.formattedDate() ?: DateUtil.getCurrentDate(),
+                    mood = MoodTypes.from(diaryNote?.moodId ?: -1)
                 )
             }
         }
@@ -57,7 +55,7 @@ class NoteViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update {
                 it.copy(
-                    moodIcon = mood.id,
+                    mood = mood,
                 )
             }
         }

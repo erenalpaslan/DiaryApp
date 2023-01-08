@@ -44,7 +44,7 @@ fun NoteTopBar(doneVisible: Boolean, navigator: DiaryNavigator) {
                 enter = slideInHorizontally(
                     animationSpec = tween(300, 0)
                 ) { fullWidth ->
-                    fullWidth 
+                    fullWidth
                   } + fadeIn(),
                 exit = slideOutHorizontally(
                     animationSpec = tween(300, 0)

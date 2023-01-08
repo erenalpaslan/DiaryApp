@@ -1,6 +1,7 @@
 package com.easylife.diary.feature.note
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -72,48 +73,9 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                     doneVisible = uiState.doneVisible,
                     navigator = navigator
                 )
-            }
-        ) {
-            ConstraintLayout(
-                modifier = Modifier
-                    .padding(it)
-                    .padding(top = 16.dp)
-                    .fillMaxSize()
-            ) {
-                val (dateRef, inputFieldRef, bottomRef) = createRefs()
-                Column(modifier = Modifier.constrainAs(dateRef) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }) {
-                    Text(
-                        text = uiState.date ?: "3 Jan 2023, 07:33 PM",
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Divider()
-                }
-                Column(modifier = Modifier.constrainAs(inputFieldRef) {
-                    top.linkTo(dateRef.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    bottom.linkTo(bottomRef.top)
-                    width = Dimension.fillToConstraints
-                    height = Dimension.fillToConstraints
-                }) {
-                    DiaryTitleTextField(uiState.title) {title ->
-                        viewModel.onTitleChanged(title)
-                    }
-                    DiaryEntryTextField(uiState.description) {description ->
-                        viewModel.onDescriptionChanged(description)
-                    }
-                }
-                Column(modifier = Modifier.constrainAs(bottomRef) {
-                    bottom.linkTo(parent.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    width = Dimension.fillToConstraints
-                }) {
+            },
+            bottomBar = {
+                Column(modifier = Modifier.fillMaxWidth()) {
                     Divider()
                     Spacer(modifier = Modifier.height(10.dp))
                     Row(modifier = Modifier.padding(horizontal = 16.dp)) {
@@ -135,6 +97,56 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                                 contentDescription = "Add mood icon"
                             )
                         }
+                    }
+                }
+            }
+        ) {
+            ConstraintLayout(
+                modifier = Modifier
+                    .padding(it)
+                    .fillMaxSize()
+            ) {
+                val (dateRef, inputFieldRef) = createRefs()
+                Column(modifier = Modifier.constrainAs(dateRef) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }) {
+                    Text(
+                        text = uiState.date,
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Divider()
+                }
+                Column(modifier = Modifier.constrainAs(inputFieldRef) {
+                    top.linkTo(dateRef.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }) {
+                    uiState.mood?.let { mood ->
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Row() {
+                            Spacer(modifier = Modifier.width(8.dp))
+                            IconButton(onClick = {
+                                showMoodDialogState.value = true
+                            }) {
+                                Image(
+                                    painter = painterResource(id = mood.icon),
+                                    contentDescription = mood.moodName,
+                                    modifier = Modifier.size(56.dp)
+                                )
+                            }
+                        }
+                    }
+                    DiaryTitleTextField(uiState.title) { title ->
+                        viewModel.onTitleChanged(title)
+                    }
+                    DiaryEntryTextField(uiState.description) { description ->
+                        viewModel.onDescriptionChanged(description)
                     }
                 }
             }

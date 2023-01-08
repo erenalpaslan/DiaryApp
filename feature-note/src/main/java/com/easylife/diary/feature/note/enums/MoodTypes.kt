@@ -1,4 +1,6 @@
-package com.easylife.diary.core.model.enums
+package com.easylife.diary.feature.note.enums
+
+import com.easylife.diary.feature.note.R
 
 /**
  * Created by erenalpaslan on 7.01.2023
@@ -11,27 +13,27 @@ enum class MoodTypes(
     UNHAPPY(
         1,
         "Unhappy",
-        0
+        R.drawable.ic_unhappy
     ),
     SAD(
         2,
         "Sad",
-        0
+        R.drawable.ic_sad
     ),
     FINE(
         3,
         "Fine",
-        0
+        R.drawable.ic_normal
     ),
     GOOD(
         4,
         "Good",
-        0
+        R.drawable.ic_good
     ),
     HAPPY(
         5,
         "Happy",
-        0
+        R.drawable.ic_happy
     );
 
     companion object {
