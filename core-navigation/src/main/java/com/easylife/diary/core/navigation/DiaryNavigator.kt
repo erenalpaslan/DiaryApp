@@ -47,4 +47,6 @@ abstract class DiaryNavigator : Navigator() {
             NavigationCommand.PopBackStack -> popBackStack()
         }
     }
+
+    fun navController() = navControllerFlow.value
 }

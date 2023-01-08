@@ -30,4 +30,5 @@ dependencies {
     api(libs.accompanist.navigation.animation)
 
     api(libs.coil)
+    api(libs.gson)
 }
