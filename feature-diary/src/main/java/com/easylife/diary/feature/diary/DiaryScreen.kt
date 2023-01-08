@@ -32,8 +32,8 @@ import com.easylife.diary.feature.diary.components.DiaryScreenTopBar
 /**
  * Created by erenalpaslan on 1.01.2023
  */
-class DiaryScreen: BaseScreen<DiaryViewModel>() {
-    
+class DiaryScreen : BaseScreen<DiaryViewModel>() {
+
     @Composable
     override fun Screen() {
         val uiState by viewModel.uiSate.collectAsStateWithLifecycle()
@@ -45,16 +45,20 @@ class DiaryScreen: BaseScreen<DiaryViewModel>() {
     fun Content(uiState: DiaryUiState) {
         Scaffold(
             topBar = {
-                DiaryScreenTopBar(onSearched = {
+                DiaryScreenTopBar(
+                    isEmpty = uiState is DiaryUiState.EmptyDiary,
+                    onSearched = {
 
-                })
+                    }
+                )
             }
         ) {
-            Column(modifier = Modifier
-                .padding(it)
-                .fillMaxSize()
+            Column(
+                modifier = Modifier
+                    .padding(it)
+                    .fillMaxSize()
             ) {
-                when(uiState) {
+                when (uiState) {
                     DiaryUiState.Loading -> {}
                     DiaryUiState.EmptyDiary -> DiaryEmptyScreen()
                     is DiaryUiState.DataLoaded -> {
@@ -66,5 +70,4 @@ class DiaryScreen: BaseScreen<DiaryViewModel>() {
     }
 
 
-    
 }
