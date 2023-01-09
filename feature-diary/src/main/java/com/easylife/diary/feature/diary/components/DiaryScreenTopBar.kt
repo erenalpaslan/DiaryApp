@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
  */
 @Composable
 fun DiaryScreenTopBar(
+    isEmpty: Boolean = false,
     onSearched: (String) -> Unit
 ) {
     var isSearching by remember {
@@ -56,13 +57,15 @@ fun DiaryScreenTopBar(
                 Text(text = "Diary")
             },
             actions = {
-                IconButton(onClick = {
-                    isSearching = true
-                }) {
-                    Icon(
-                        imageVector = Icons.Rounded.Search,
-                        contentDescription = "Search Icon"
-                    )
+                if (!isEmpty) {
+                    IconButton(onClick = {
+                        isSearching = true
+                    }) {
+                        Icon(
+                            imageVector = Icons.Rounded.Search,
+                            contentDescription = "Search Icon"
+                        )
+                    }
                 }
             },
             colors = TopAppBarDefaults.smallTopAppBarColors(

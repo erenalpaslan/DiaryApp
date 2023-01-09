@@ -16,12 +16,13 @@ import androidx.compose.ui.graphics.Color
  */
 @Composable
 fun DiaryEntryTextField(
-    entry: MutableState<String>,
+    entry: String?,
+    onTextChanged: (String?) -> Unit
 ) {
     TextField(
-        value = entry.value,
+        value = entry ?: "",
         onValueChange = { newEntry ->
-            entry.value = newEntry
+            onTextChanged(newEntry)
         },
         placeholder = {
             Text("Diary entry")

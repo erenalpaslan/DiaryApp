@@ -10,19 +10,22 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 
 /**
  * Created by erenalpaslan on 3.01.2023
  */
 @Composable
 fun DiaryTitleTextField(
-    title: MutableState<String>
+    title: String?,
+    onTextChanged: (String?) -> Unit
 ) {
     TextField(
-        value = title.value,
+        value = title ?: "",
         onValueChange = { newTitle ->
             if (newTitle.length < 64)
-                title.value = newTitle
+                onTextChanged(newTitle)
         },
         placeholder = {
             Text(

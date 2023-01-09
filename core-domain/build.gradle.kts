@@ -1,9 +1,11 @@
 plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    id("diary.android.library")
+    id("diary.hilt")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+dependencies {
+    implementation(project(":core-model"))
+    implementation(project(":core-common"))
+    implementation(project(":core-data"))
+    implementation(project(":core-designsystem"))
 }
