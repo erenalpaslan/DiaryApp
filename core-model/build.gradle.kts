@@ -1,7 +1,11 @@
 plugins {
     id("diary.android.library")
     id("diary.hilt")
-    id("diary.android.library.compose")
 }
 dependencies {
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+
+    implementation(libs.gson)
 }

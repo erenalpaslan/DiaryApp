@@ -26,4 +26,16 @@ object DateUtil {
         val formatter = SimpleDateFormat(DEFAULT_PATTERN, Locale.getDefault())
         return formatter.format(calendar.time)
     }
+
+    fun getCurrentDiaryDate(): DiaryDate? {
+        val calendar = Calendar.getInstance()
+        val hours = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.time)
+        return DiaryDate(
+            hours = hours,
+            dayOfMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()),
+            month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
+            year = calendar.get(Calendar.YEAR),
+            timestamp = calendar.timeInMillis
+        )
+    }
 }

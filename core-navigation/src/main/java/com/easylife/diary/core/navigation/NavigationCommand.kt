@@ -19,4 +19,10 @@ sealed class NavigationCommand {
         val where: String,
         val inclusive: Boolean
     ): NavigationCommand()
+
+    data class NavigateUpWithResult<T>(
+        val key: String,
+        val result: T,
+        val route: String? = null
+    ) : NavigationCommand()
 }

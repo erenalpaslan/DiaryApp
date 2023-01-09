@@ -1,15 +1,19 @@
 package com.easylife.diary.feature.note
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.easylife.diary.core.common.util.DateUtil
 import com.easylife.diary.core.common.util.DateUtil.formattedDate
 import com.easylife.diary.core.designsystem.base.BaseViewModel
+import com.easylife.diary.core.domain.usecases.AddEntryUseCase
 import com.easylife.diary.core.model.DiaryNote
 import com.easylife.diary.feature.note.enums.MoodTypes
 import com.easylife.diary.core.navigation.DiaryNavigator
+import com.easylife.diary.core.navigation.screen.DiaryArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -20,7 +24,9 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class NoteViewModel @Inject constructor(
-    navigator: DiaryNavigator
+    private val navigator: DiaryNavigator,
+    private val addEntryUseCase: AddEntryUseCase,
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val _uiState: MutableStateFlow<NoteUiState> = MutableStateFlow(NoteUiState())
@@ -30,9 +36,7 @@ class NoteViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val diaryNote = navigator.navController()?.currentBackStackEntry?.arguments?.getParcelable<DiaryNote>(
-                NoteScreen.NOTE_KEY
-            )
+            val diaryNote = savedStateHandle.get<DiaryNote?>(DiaryArgs.NOTE_KEY)
 
             _uiState.update {
                 it.copy(
@@ -47,7 +51,17 @@ class NoteViewModel @Inject constructor(
 
     fun onDoneClicked() {
         viewModelScope.launch {
-            //TODO: Save diary entry call here!
+            showProgress()
+            addEntryUseCase.execute(AddEntryUseCase.Params(
+                title = _uiState.value.title,
+                description = _uiState.value.description,
+                moodId = _uiState.value.mood?.id
+            )).collect()
+            navigator.navigateBackWithResult(
+                key = DiaryArgs.ENTRY_AFFECTED,
+                result = true
+            )
+            hideProgress()
         }
     }
 

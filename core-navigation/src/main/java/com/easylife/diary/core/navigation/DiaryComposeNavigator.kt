@@ -20,4 +20,18 @@ class DiaryComposeNavigator @Inject constructor(): DiaryNavigator() {
     override fun popBackStack() {
         navigationCommands.tryEmit(NavigationCommand.PopBackStack)
     }
+
+    override fun <T> navigateBackWithResult(
+        key: String,
+        result: T,
+        route: String?
+    ) {
+        navigationCommands.tryEmit(
+            NavigationCommand.NavigateUpWithResult(
+                key = key,
+                result = result,
+                route = route
+            )
+        )
+    }
 }

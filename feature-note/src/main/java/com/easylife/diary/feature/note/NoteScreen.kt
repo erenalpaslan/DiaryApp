@@ -72,7 +72,9 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                 NoteTopBar(
                     doneVisible = uiState.doneVisible,
                     navigator = navigator
-                )
+                ) {
+                    viewModel.onDoneClicked()
+                }
             },
             bottomBar = {
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -158,9 +160,5 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
                 viewModel.onMoodSelected(it)
             }
         )
-    }
-
-    companion object {
-        const val NOTE_KEY = "NOTE_KEY"
     }
 }

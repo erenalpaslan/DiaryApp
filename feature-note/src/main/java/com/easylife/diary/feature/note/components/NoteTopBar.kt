@@ -25,7 +25,11 @@ import com.easylife.diary.core.navigation.DiaryNavigator
  */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun NoteTopBar(doneVisible: Boolean, navigator: DiaryNavigator) {
+fun NoteTopBar(
+    doneVisible: Boolean,
+    navigator: DiaryNavigator,
+    onDoneClicked: () -> Unit
+) {
     TopAppBar(
         title = {},
         navigationIcon = {
@@ -53,7 +57,7 @@ fun NoteTopBar(doneVisible: Boolean, navigator: DiaryNavigator) {
                 } + fadeOut()
             ) {
                 Button(onClick = {
-
+                    onDoneClicked()
                 }) {
                     Text(text = "Done")
                 }
