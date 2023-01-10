@@ -10,7 +10,8 @@ import kotlinx.android.parcel.Parcelize
 data class DiaryDate(
     val hours: String?, //08:32 PM
     val dayOfMonth: String?, //7
-    val month: String?, //Jan
+    val shortMonth: String?, //Jan
+    val longMonth: String?,
     val year: Int?, //2023
     val timestamp: Long, //15600000000
 ): Parcelable

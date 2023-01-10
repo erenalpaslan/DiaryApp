@@ -1,6 +1,7 @@
 package com.easylife.diary.core.model
 
 import android.os.Parcelable
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
@@ -20,5 +21,5 @@ data class DiaryNote(
     var title: String? = null,
     var description: String? = null,
     @field:TypeConverters(DiaryDateTypeConverter::class)
-    val date: DiaryDate?
+    @Embedded val date: DiaryDate?
 ): Parcelable
