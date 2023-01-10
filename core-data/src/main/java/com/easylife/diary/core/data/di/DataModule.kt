@@ -45,7 +45,7 @@ class DataModule {
             appContext,
             DiaryDatabase::class.java,
             DiaryDatabase.DB_NAME)
-            .addTypeConverter(diaryDateTypeConverter)
+            //.addTypeConverter(diaryDateTypeConverter)
             .build()
     }
 }

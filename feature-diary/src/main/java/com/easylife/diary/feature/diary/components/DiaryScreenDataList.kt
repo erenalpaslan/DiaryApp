@@ -7,13 +7,14 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.easylife.diary.core.model.DiaryNote
+import com.easylife.diary.core.model.EntryGroup
 
 /**
  * Created by erenalpaslan on 2.01.2023
  */
 @Composable
 fun DiaryScreenDataList(
-    data: List<DiaryNote>,
+    data: List<EntryGroup>,
     onItemClicked: (DiaryNote) -> Unit
 ) {
     LazyVerticalGrid(
@@ -21,12 +22,12 @@ fun DiaryScreenDataList(
         modifier = Modifier.fillMaxSize()
     ) {
         items(data) { entry ->
-            DiaryListItem(
+            /*DiaryListItem(
                 entry,
                 onClick = {
                     onItemClicked(entry)
                 }
-            )
+            )*/
         }
     }
 }

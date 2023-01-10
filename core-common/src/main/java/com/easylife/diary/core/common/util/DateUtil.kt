@@ -32,8 +32,9 @@ object DateUtil {
         val hours = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.time)
         return DiaryDate(
             hours = hours,
-            dayOfMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()),
-            month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
+            dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH).toString(),
+            shortMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()),
+            longMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
             year = calendar.get(Calendar.YEAR),
             timestamp = calendar.timeInMillis
         )
