@@ -13,7 +13,8 @@ data class NoteUiState(
     var title: String? = null,
     var description: String? = null,
     var date: String = "",
-    var mood: MoodTypes? = null
+    var mood: MoodTypes? = null,
+    var isEditing: Boolean = false
 ) {
     fun isChanged(): Boolean {
         return !title.isNullOrEmpty() || !description.isNullOrEmpty() || mood != null

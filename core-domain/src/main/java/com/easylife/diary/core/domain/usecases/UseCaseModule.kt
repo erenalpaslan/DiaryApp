@@ -17,7 +17,7 @@ class UseCaseModule {
     @Provides
     fun providesGetAllEntriesUseCase(
         dispatchers: DiaryDispatchers,
-        entryRepository: com.easylife.diary.core.data.repository.EntryRepository
+        entryRepository: EntryRepository
     ): GetAllEntriesUseCase {
         return GetAllEntriesUseCase(dispatchers, entryRepository)
     }
@@ -25,9 +25,25 @@ class UseCaseModule {
     @Provides
     fun providesAddEntryUseCase(
         dispatchers: DiaryDispatchers,
-        entryRepository: com.easylife.diary.core.data.repository.EntryRepository
+        entryRepository: EntryRepository
     ): AddEntryUseCase {
         return AddEntryUseCase(dispatchers, entryRepository)
+    }
+
+    @Provides
+    fun providesEditEntryUseCase(
+        dispatchers: DiaryDispatchers,
+        entryRepository: EntryRepository
+    ): EditEntryUseCase {
+        return EditEntryUseCase(dispatchers, entryRepository)
+    }
+
+    @Provides
+    fun providesDeleteEntryUseCase(
+        dispatchers: DiaryDispatchers,
+        entryRepository: EntryRepository
+    ): DeleteEntryUseCase {
+        return DeleteEntryUseCase(dispatchers, entryRepository)
     }
 
 }
