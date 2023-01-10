@@ -71,10 +71,18 @@ class NoteScreen : BaseScreen<NoteViewModel>() {
             topBar = {
                 NoteTopBar(
                     doneVisible = uiState.doneVisible,
-                    navigator = navigator
-                ) {
-                    viewModel.onDoneClicked()
-                }
+                    isEditing = uiState.isEditing,
+                    navigator = navigator,
+                    onDoneClicked = {
+                        viewModel.onDoneClicked()
+                    },
+                    onEditClicked = {
+                        viewModel.onEditClicked()
+                    },
+                    onDeleteClicked = {
+                        viewModel.onDeleteClicked()
+                    }
+                )
             },
             bottomBar = {
                 Column(modifier = Modifier.fillMaxWidth()) {

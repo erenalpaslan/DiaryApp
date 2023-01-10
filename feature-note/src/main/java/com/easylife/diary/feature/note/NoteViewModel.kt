@@ -6,6 +6,8 @@ import com.easylife.diary.core.common.util.DateUtil
 import com.easylife.diary.core.common.util.DateUtil.formattedDate
 import com.easylife.diary.core.designsystem.base.BaseViewModel
 import com.easylife.diary.core.domain.usecases.AddEntryUseCase
+import com.easylife.diary.core.domain.usecases.DeleteEntryUseCase
+import com.easylife.diary.core.domain.usecases.EditEntryUseCase
 import com.easylife.diary.core.model.DiaryNote
 import com.easylife.diary.feature.note.enums.MoodTypes
 import com.easylife.diary.core.navigation.DiaryNavigator
@@ -26,6 +28,8 @@ import javax.inject.Inject
 class NoteViewModel @Inject constructor(
     private val navigator: DiaryNavigator,
     private val addEntryUseCase: AddEntryUseCase,
+    private val editEntryUseCase: EditEntryUseCase,
+    private val deleteEntryUseCase: DeleteEntryUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
@@ -34,17 +38,35 @@ class NoteViewModel @Inject constructor(
         it.doneVisible = it.isChanged()
     }
 
+    private var diaryNote: DiaryNote? = null
+
     init {
         viewModelScope.launch {
-            val diaryNote = savedStateHandle.get<DiaryNote?>(DiaryArgs.NOTE_KEY)
-
+            diaryNote = savedStateHandle[DiaryArgs.NOTE_KEY]
             _uiState.update {
                 it.copy(
                     title = diaryNote?.title ?: "",
                     description = diaryNote?.description ?: "",
                     date = diaryNote?.date?.formattedDate() ?: DateUtil.getCurrentDate(),
-                    mood = MoodTypes.from(diaryNote?.moodId ?: -1)
+                    mood = MoodTypes.from(diaryNote?.moodId ?: -1),
+                    isEditing = diaryNote != null
                 )
+            }
+        }
+    }
+
+    fun onDeleteClicked() {
+        diaryNote?.let {
+            viewModelScope.launch {
+                showProgress()
+                deleteEntryUseCase.execute(DeleteEntryUseCase.Params(
+                    entry = it
+                )).collect()
+                navigator.navigateBackWithResult(
+                    key = DiaryArgs.ENTRY_AFFECTED,
+                    result = true
+                )
+                hideProgress()
             }
         }
     }
@@ -65,6 +87,22 @@ class NoteViewModel @Inject constructor(
         }
     }
 
+    fun onEditClicked() {
+        diaryNote?.let {entry ->
+            viewModelScope.launch {
+                showProgress()
+                editEntryUseCase.execute(EditEntryUseCase.Params(
+                    entry = entry
+                )).collect()
+                navigator.navigateBackWithResult(
+                    key = DiaryArgs.ENTRY_AFFECTED,
+                    result = true
+                )
+                hideProgress()
+            }
+        }
+    }
+
     fun onMoodSelected(mood: MoodTypes) {
         viewModelScope.launch {
             _uiState.update {
@@ -72,6 +110,7 @@ class NoteViewModel @Inject constructor(
                     mood = mood,
                 )
             }
+            diaryNote?.moodId = mood.id
         }
     }
 
@@ -82,6 +121,7 @@ class NoteViewModel @Inject constructor(
                     title = title ?: ""
                 )
             }
+            diaryNote?.title = title
         }
     }
 
@@ -92,6 +132,7 @@ class NoteViewModel @Inject constructor(
                    description = description ?: "",
                )
             }
+            diaryNote?.description = description
         }
     }
 

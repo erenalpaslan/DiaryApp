@@ -24,11 +24,10 @@ import javax.inject.Inject
 @HiltViewModel
 class DiaryViewModel @Inject constructor(
     private val navigator: DiaryNavigator,
-    private val handle: SavedStateHandle,
     private val getAllEntriesUseCase: GetAllEntriesUseCase
 ): BaseViewModel() {
 
-    private val _uiState: MutableStateFlow<DiaryUiState> = MutableStateFlow(DiaryUiState.EmptyDiary)
+    private val _uiState: MutableStateFlow<DiaryUiState> = MutableStateFlow(DiaryUiState.Loading)
     val uiSate: StateFlow<DiaryUiState> = _uiState.asStateFlow()
 
     init {

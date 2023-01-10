@@ -16,9 +16,9 @@ import kotlinx.android.parcel.Parcelize
 data class DiaryNote(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val moodId: Int? = null,
-    val title: String? = null,
-    val description: String? = null,
+    var moodId: Int? = null,
+    var title: String? = null,
+    var description: String? = null,
     @field:TypeConverters(DiaryDateTypeConverter::class)
     val date: DiaryDate?
 ): Parcelable
