@@ -43,8 +43,8 @@ class DiaryScreen : BaseScreen<DiaryViewModel>() {
             topBar = {
                 DiaryScreenTopBar(
                     isEmpty = uiState is DiaryUiState.EmptyDiary,
-                    onSearched = {
-
+                    onSearched = {text ->
+                        viewModel.onSearch(text)
                     }
                 )
             }

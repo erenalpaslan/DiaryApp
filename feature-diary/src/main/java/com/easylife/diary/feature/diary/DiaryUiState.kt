@@ -14,6 +14,7 @@ sealed interface DiaryUiState {
 
     data class DataLoaded(
         val data: List<EntryGroup> = emptyList(),
-        val currentDate: String? = null
+        val currentDate: String? = null,
+        val rawData: List<EntryGroup> = emptyList()
     ): DiaryUiState
 }
