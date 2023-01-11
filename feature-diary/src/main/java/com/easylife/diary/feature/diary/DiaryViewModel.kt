@@ -46,7 +46,8 @@ class DiaryViewModel @Inject constructor(
                             DiaryUiState.EmptyDiary
                         }else {
                             DiaryUiState.DataLoaded(
-                                data = result.data ?: emptyList()
+                                data = result.data ?: emptyList(),
+                                rawData = result.data ?: emptyList()
                             )
                         }
                     }
@@ -59,6 +60,29 @@ class DiaryViewModel @Inject constructor(
         navigator.navigate(
             route = "${DiaryRoutes.noteRoute}?${DiaryArgs.NOTE_KEY}=${navigator.toJson(entry)}"
         )
+    }
+
+    fun onSearch(text: String?) {
+        if (_uiState.value is DiaryUiState.DataLoaded && !text.isNullOrEmpty()) {
+            viewModelScope.launch {
+                _uiState.value = DiaryUiState.DataLoaded(
+                    data = (_uiState.value as DiaryUiState.DataLoaded).data.filter { group ->
+                        group.list.filter {entry ->
+                            entry.title?.contains(text) == true ||
+                                    entry.description?.contains(text) == true
+                        }.isNotEmpty()
+                    },
+                    rawData = (_uiState.value as DiaryUiState.DataLoaded).rawData,
+                    currentDate = (_uiState.value as DiaryUiState.DataLoaded).currentDate
+                )
+            }
+        }else {
+            getAllEntries()
+        }
+    }
+
+    fun onClear() {
+
     }
 
 }
