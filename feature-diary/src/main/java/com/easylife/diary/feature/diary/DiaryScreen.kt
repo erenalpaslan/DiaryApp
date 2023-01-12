@@ -45,6 +45,9 @@ class DiaryScreen : BaseScreen<DiaryViewModel>() {
                     isEmpty = uiState is DiaryUiState.EmptyDiary,
                     onSearched = {text ->
                         viewModel.onSearch(text)
+                    },
+                    onCleared = {
+                        viewModel.onSearch(null)
                     }
                 )
             }

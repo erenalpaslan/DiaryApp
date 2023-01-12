@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.easylife.diary.core.common.util.DiaryResult
 import com.easylife.diary.core.designsystem.base.BaseViewModel
 import com.easylife.diary.core.domain.usecases.GetAllEntriesUseCase
+import com.easylife.diary.core.domain.usecases.SearchEntriesUseCase
 import com.easylife.diary.core.model.DiaryNote
 import com.easylife.diary.core.navigation.DiaryNavigator
 import com.easylife.diary.core.navigation.screen.DiaryArgs
@@ -24,7 +25,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DiaryViewModel @Inject constructor(
     private val navigator: DiaryNavigator,
-    private val getAllEntriesUseCase: GetAllEntriesUseCase
+    private val getAllEntriesUseCase: GetAllEntriesUseCase,
+    private val searchEntriesUseCase: SearchEntriesUseCase
 ): BaseViewModel() {
 
     private val _uiState: MutableStateFlow<DiaryUiState> = MutableStateFlow(DiaryUiState.Loading)
@@ -65,24 +67,29 @@ class DiaryViewModel @Inject constructor(
     fun onSearch(text: String?) {
         if (_uiState.value is DiaryUiState.DataLoaded && !text.isNullOrEmpty()) {
             viewModelScope.launch {
-                _uiState.value = DiaryUiState.DataLoaded(
-                    data = (_uiState.value as DiaryUiState.DataLoaded).data.filter { group ->
-                        group.list.filter {entry ->
-                            entry.title?.contains(text) == true ||
-                                    entry.description?.contains(text) == true
-                        }.isNotEmpty()
-                    },
-                    rawData = (_uiState.value as DiaryUiState.DataLoaded).rawData,
-                    currentDate = (_uiState.value as DiaryUiState.DataLoaded).currentDate
-                )
+                searchEntriesUseCase.execute(SearchEntriesUseCase.Params(
+                    text,
+                    (_uiState.value as DiaryUiState.DataLoaded).rawData)
+                ).collect {result ->
+                    when(result) {
+                        is DiaryResult.Error -> _error.postValue(result.message)
+                        is DiaryResult.Success -> {
+                            result.data?.let {data ->
+                                _uiState.update {
+                                    DiaryUiState.DataLoaded(
+                                        data = data,
+                                        rawData = (_uiState.value as DiaryUiState.DataLoaded).rawData,
+                                        currentDate = (_uiState.value as DiaryUiState.DataLoaded).currentDate
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }else {
             getAllEntries()
         }
-    }
-
-    fun onClear() {
-
     }
 
 }

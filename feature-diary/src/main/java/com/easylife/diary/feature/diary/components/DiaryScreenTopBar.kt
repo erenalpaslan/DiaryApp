@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
@@ -31,7 +32,8 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun DiaryScreenTopBar(
     isEmpty: Boolean = false,
-    onSearched: (String) -> Unit
+    onSearched: (String) -> Unit,
+    onCleared: () -> Unit
 ) {
     var isSearching by remember {
         mutableStateOf(false)
@@ -43,14 +45,14 @@ fun DiaryScreenTopBar(
     if (isSearching) {
         TopAppBar(
             title = {
-                Row() {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     TextField(
                         value = searchText,
                         onValueChange = {
                             searchText = it
                             onSearched(searchText)
                         },
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth().weight(1f),
                         placeholder = {
                             Text("Search", style = MaterialTheme.typography.titleLarge)
                         },
@@ -65,8 +67,8 @@ fun DiaryScreenTopBar(
                     IconButton(
                         onClick = {
                             searchText = ""
-                        },
-                        modifier = Modifier.weight(1f)
+                            onCleared()
+                        }
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Close,
