@@ -46,4 +46,11 @@ class UseCaseModule {
         return DeleteEntryUseCase(dispatchers, entryRepository)
     }
 
+    @Provides
+    fun providesSearchEntryUseCase(
+        dispatchers: DiaryDispatchers,
+        entryRepository: EntryRepository
+    ): SearchEntriesUseCase {
+        return SearchEntriesUseCase(dispatchers, entryRepository)
+    }
 }
