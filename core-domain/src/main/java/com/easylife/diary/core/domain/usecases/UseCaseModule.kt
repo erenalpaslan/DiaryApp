@@ -1,6 +1,7 @@
 package com.easylife.diary.core.domain.usecases
 
 import com.easylife.diary.core.common.util.dispatchers.DiaryDispatchers
+import com.easylife.diary.core.data.repository.DateRepository
 import com.easylife.diary.core.data.repository.EntryRepository
 import dagger.Module
 import dagger.Provides
@@ -52,5 +53,13 @@ class UseCaseModule {
         entryRepository: EntryRepository
     ): SearchEntriesUseCase {
         return SearchEntriesUseCase(dispatchers, entryRepository)
+    }
+
+    @Provides
+    fun providesDateUseCase(
+        dispatchers: DiaryDispatchers,
+        dateRepository: DateRepository
+    ): GetDateUseCase {
+        return GetDateUseCase(dispatchers, dateRepository)
     }
 }

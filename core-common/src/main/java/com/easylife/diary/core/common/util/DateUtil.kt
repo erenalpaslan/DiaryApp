@@ -39,4 +39,8 @@ object DateUtil {
             timestamp = calendar.timeInMillis
         )
     }
+
+    fun getCurrentDayOfMonth(): String {
+        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
+    }
 }

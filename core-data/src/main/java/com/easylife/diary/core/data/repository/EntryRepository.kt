@@ -17,4 +17,6 @@ interface EntryRepository {
 
     suspend fun getAllEntries(): List<DiaryNote>
 
+    suspend fun getEntryCount(dayOfMonth: String?, month: String?, year: Int?): Int
+
 }

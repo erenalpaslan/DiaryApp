@@ -1,5 +1,7 @@
 package com.easylife.diary.core.data.di
 
+import com.easylife.diary.core.data.repository.DateRepository
+import com.easylife.diary.core.data.repository.DateRepositoryImpl
 import com.easylife.diary.core.data.repository.EntryRepository
 import com.easylife.diary.core.data.repository.EntryRepositoryImpl
 import dagger.Binds
@@ -19,5 +21,10 @@ abstract class RepositoryModule {
     abstract fun providesEntryRepository(
         repositoryImpl: EntryRepositoryImpl
     ): EntryRepository
+
+    @Binds
+    abstract fun providesDateRepository(
+        repositoryImpl: DateRepositoryImpl
+    ): DateRepository
 
 }

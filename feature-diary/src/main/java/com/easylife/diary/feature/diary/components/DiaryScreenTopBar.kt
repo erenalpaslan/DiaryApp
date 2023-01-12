@@ -81,6 +81,7 @@ fun DiaryScreenTopBar(
                 IconButton(onClick = {
                     isSearching = false
                     searchText = ""
+                    onCleared()
                 }) {
                     Icon(
                         imageVector = Icons.Rounded.ArrowBackIosNew,
