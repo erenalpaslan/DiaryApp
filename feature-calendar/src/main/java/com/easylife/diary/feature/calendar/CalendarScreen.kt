@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CalendarMonth
@@ -25,7 +26,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.easylife.diary.core.designsystem.base.BaseScreen
+import com.easylife.diary.core.designsystem.components.CalendarPager
 import com.easylife.diary.core.designsystem.theme.red
+import com.easylife.diary.feature.calendar.components.CurrentDateButton
 
 /**
  * Created by erenalpaslan on 1.01.2023
@@ -33,6 +36,11 @@ import com.easylife.diary.core.designsystem.theme.red
 class CalendarScreen : BaseScreen<CalendarViewModel>() {
     @Composable
     override fun Screen() {
+        Content()
+    }
+
+    @Composable
+    private fun Content() {
         var showDateSelectionDialog by remember {
             mutableStateOf(false)
         }
@@ -45,7 +53,6 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
                 TopAppBar(
                     navigationIcon = {
                         TextButton(onClick = {
-                            //TODO: Show date selection
                             showDateSelectionDialog = true
                         }) {
                             Row(
@@ -63,27 +70,19 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
 
                     },
                     actions = {
-                        if (isCurrentMonth) {
-                            IconButton(
-                                onClick = {
-                                    //TODO: Scroll to the current month
-                                },
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Icon(
-                                        imageVector = Icons.Rounded.CalendarToday,
-                                        contentDescription = "Calendar Icon"
-                                    )
-                                    Text(text = "7", modifier = Modifier.padding(top = 6.dp))
-                                }
-                            }
+                        CurrentDateButton(
+                            isCurrentMonth = isCurrentMonth
+                        ) {
+                            viewModel.onCurrentDateSelected()
                         }
                     }
                 )
             }
         ) {
-            Column(modifier = Modifier.padding(it)) {
-                Text(text = "Calendar screen")
+            Column(modifier = Modifier
+                .padding(it)
+                .fillMaxSize()) {
+                CalendarPager()
             }
         }
 

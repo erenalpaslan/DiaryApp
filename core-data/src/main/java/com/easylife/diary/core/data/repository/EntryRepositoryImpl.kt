@@ -35,4 +35,8 @@ class EntryRepositoryImpl @Inject constructor(
     override suspend fun getAllEntries(): List<DiaryNote> {
         return entryDao.getAllEntries()
     }
+
+    override suspend fun getEntryCount(dayOfMonth: String?, month: String?, year: Int?): Int {
+        return entryDao.getEntryCountsByDates(dayOfMonth, month, year)
+    }
 }
