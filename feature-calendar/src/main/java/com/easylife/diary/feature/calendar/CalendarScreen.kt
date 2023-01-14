@@ -1,18 +1,12 @@
 package com.easylife.diary.feature.calendar
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.CalendarMonth
-import androidx.compose.material.icons.rounded.CalendarToday
 import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -24,10 +18,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.easylife.diary.core.designsystem.base.BaseScreen
-import com.easylife.diary.core.designsystem.components.CalendarPager
-import com.easylife.diary.core.designsystem.theme.red
+import com.easylife.diary.core.designsystem.components.calendar.CalendarPager
+import com.easylife.diary.core.model.calendar.DatePoint
 import com.easylife.diary.feature.calendar.components.CurrentDateButton
 
 /**
@@ -73,7 +67,7 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
                         CurrentDateButton(
                             isCurrentMonth = isCurrentMonth
                         ) {
-                            viewModel.onCurrentDateSelected()
+
                         }
                     }
                 )
@@ -82,7 +76,9 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
             Column(modifier = Modifier
                 .padding(it)
                 .fillMaxSize()) {
-                CalendarPager()
+                CalendarPager {point ->
+                    viewModel.onSelectionChanged(point)
+                }
             }
         }
 

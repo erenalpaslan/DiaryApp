@@ -58,8 +58,9 @@ class UseCaseModule {
     @Provides
     fun providesDateUseCase(
         dispatchers: DiaryDispatchers,
-        dateRepository: DateRepository
+        dateRepository: DateRepository,
+        entryRepository: EntryRepository
     ): GetDateUseCase {
-        return GetDateUseCase(dispatchers, dateRepository)
+        return GetDateUseCase(dispatchers, dateRepository, entryRepository)
     }
 }

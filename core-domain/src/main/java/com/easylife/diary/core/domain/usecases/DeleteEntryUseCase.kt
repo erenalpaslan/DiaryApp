@@ -3,7 +3,6 @@ package com.easylife.diary.core.domain.usecases
 import com.easylife.diary.core.common.util.DiaryResult
 import com.easylife.diary.core.common.util.dispatchers.DiaryDispatchers
 import com.easylife.diary.core.data.repository.EntryRepository
-import com.easylife.diary.core.designsystem.base.BaseUseCase
 import com.easylife.diary.core.model.DiaryNote
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -43,4 +43,8 @@ object DateUtil {
     fun getCurrentDayOfMonth(): String {
         return Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
     }
+
+    fun getDayNameList(): List<String> {
+        return listOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+    }
 }
