@@ -72,4 +72,12 @@ class UseCaseModule {
     ): GetDatePointListByLocalDateUseCase {
         return GetDatePointListByLocalDateUseCase(dispatchers, dateRepository, entryRepository)
     }
+
+    @Provides
+    fun providesEntryGroupByLocalDateUseCase(
+        dispatchers: DiaryDispatchers,
+        entryRepository: EntryRepository
+    ): GetEntryGroupByLocalDateUseCase {
+        return GetEntryGroupByLocalDateUseCase(dispatchers, entryRepository)
+    }
 }

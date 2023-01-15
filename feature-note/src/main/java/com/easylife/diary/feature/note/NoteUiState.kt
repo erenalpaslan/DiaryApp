@@ -1,9 +1,6 @@
 package com.easylife.diary.feature.note
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import com.easylife.diary.core.model.DiaryNote
-import com.easylife.diary.feature.note.enums.MoodTypes
+import com.easylife.diary.core.designsystem.enums.MoodTypes
 
 /**
  * Created by erenalpaslan on 8.01.2023

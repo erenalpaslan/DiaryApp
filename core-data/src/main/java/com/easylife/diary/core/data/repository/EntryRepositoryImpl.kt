@@ -50,4 +50,12 @@ class EntryRepositoryImpl @Inject constructor(
             date.year
         ) > 0
     }
+
+    override suspend fun getEntriesByLocalDate(date: LocalDate): List<DiaryNote> {
+        return entryDao.getEntriesByLocalDate(
+            date.dayOfMonth.toString(),
+            date.month.getDisplayName(TextStyle.SHORT, Locale.getDefault()),
+            date.year
+        )
+    }
 }

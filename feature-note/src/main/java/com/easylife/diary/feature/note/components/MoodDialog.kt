@@ -22,7 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.easylife.diary.feature.note.enums.MoodTypes
+import com.easylife.diary.core.designsystem.enums.MoodTypes
 
 /**
  * Created by erenalpaslan on 8.01.2023

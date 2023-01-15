@@ -1,6 +1,6 @@
-package com.easylife.diary.feature.note.enums
+package com.easylife.diary.core.designsystem.enums
 
-import com.easylife.diary.feature.note.R
+import com.easylife.diary.core.designsystem.R
 
 /**
  * Created by erenalpaslan on 7.01.2023

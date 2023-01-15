@@ -22,4 +22,6 @@ interface EntryRepository {
 
     suspend fun hasEntryForGivenLocalDate(date: LocalDate): Boolean
 
+    suspend fun getEntriesByLocalDate(date: LocalDate): List<DiaryNote>
+
 }
