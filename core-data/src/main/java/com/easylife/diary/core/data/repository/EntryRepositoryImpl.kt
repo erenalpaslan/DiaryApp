@@ -3,6 +3,9 @@ package com.easylife.diary.core.data.repository
 import com.easylife.diary.core.common.util.DateUtil
 import com.easylife.diary.core.data.room.dao.EntryDao
 import com.easylife.diary.core.model.DiaryNote
+import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.Locale
 import javax.inject.Inject
 
 /**
@@ -38,5 +41,13 @@ class EntryRepositoryImpl @Inject constructor(
 
     override suspend fun getEntryCount(dayOfMonth: String?, month: String?, year: Int?): Int {
         return entryDao.getEntryCountsByDates(dayOfMonth, month, year)
+    }
+
+    override suspend fun hasEntryForGivenLocalDate(date: LocalDate): Boolean {
+        return entryDao.getEntryCountsByDates(
+            date.dayOfMonth.toString(),
+            date.month.getDisplayName(TextStyle.SHORT, Locale.getDefault()),
+            date.year
+        ) > 0
     }
 }

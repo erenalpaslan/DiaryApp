@@ -1,4 +1,4 @@
-package com.easylife.diary.core.designsystem.base
+package com.easylife.diary.core.domain.usecases
 
 import com.easylife.diary.core.common.util.DiaryResult
 import kotlinx.coroutines.flow.Flow

@@ -7,6 +7,8 @@ plugins {
 dependencies {
     implementation(project(":core-navigation"))
     implementation(project(":core-common"))
+    implementation(project(":core-model"))
+    implementation(project(":core-domain"))
 
     val composeBom = platform(libs.androidx.compose.bom)
     api(composeBom)
