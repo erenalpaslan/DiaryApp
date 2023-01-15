@@ -30,6 +30,13 @@ class DateRepositoryImpl @Inject constructor() : DateRepository {
         )
     }
 
+    override suspend fun getDatePointsByGivenLocalDate(localDate: LocalDate): List<DatePoint> {
+        return createDatePointsForGiven(
+            date = localDate,
+            today = LocalDate.now()
+        )
+    }
+
     private fun createDatePointsForGiven(date: LocalDate, today: LocalDate): List<DatePoint> {
         val firstDateName =
             date.withDayOfMonth(1).dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())

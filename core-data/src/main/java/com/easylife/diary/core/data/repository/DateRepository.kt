@@ -11,4 +11,6 @@ interface DateRepository {
 
     suspend fun getCalendarDates(currentDate: LocalDate): CalendarDates
 
+    suspend fun getDatePointsByGivenLocalDate(localDate: LocalDate): List<DatePoint>
+
 }

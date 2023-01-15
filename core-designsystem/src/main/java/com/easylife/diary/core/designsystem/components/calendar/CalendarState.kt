@@ -8,10 +8,9 @@ import java.time.LocalDate
  */
 data class CalendarState(
     val currentDate: LocalDate = LocalDate.now(),
+    val currentSelectedDate: LocalDate = LocalDate.now(),
     val selected: DatePoint? = null,
     val page: Int = 1,
     val isCurrentMonth: Boolean = true,
-    val currentDatePoints: List<DatePoint> = emptyList(),
-    val previousDatePoints: List<DatePoint> = emptyList(),
-    val nextDatePoints: List<DatePoint> = emptyList()
+    val pages: ArrayList<Pair<String, List<DatePoint>>> = arrayListOf()
 )

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.contentColorFor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -58,7 +59,7 @@ fun DatePointItem(
         val (textRef, dotRef) = createRefs()
         Text(
             text = point.date.dayOfMonth.toString(),
-            color = if (selected) white else if (point.active) black else gray,
+            color = if (selected) white else if (point.active) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.outlineVariant,
             modifier = Modifier.constrainAs(textRef) {
                 top.linkTo(parent.top)
                 bottom.linkTo(parent.bottom)
