@@ -28,4 +28,7 @@ interface EntryDao {
     @Query("SELECT COUNT(*) FROM Entries WHERE dayOfMonth = :dayOfMonth AND shortMonth = :month AND year = :year")
     suspend fun getEntryCountsByDates(dayOfMonth: String?, month: String?, year: Int?): Int
 
+    @Query("SELECT * FROM Entries WHERE dayOfMonth = :dayOfMonth AND shortMonth = :month AND year = :year")
+    suspend fun getEntriesByLocalDate(dayOfMonth: String?, month: String?, year: Int?): List<DiaryNote>
+
 }

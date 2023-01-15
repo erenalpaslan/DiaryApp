@@ -10,9 +10,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.easylife.diary.core.designsystem.base.BaseScreen
+import com.easylife.diary.core.designsystem.components.entry.EmptyEntryList
+import com.easylife.diary.core.designsystem.components.entry.EntryList
 import com.easylife.diary.core.navigation.screen.DiaryArgs
-import com.easylife.diary.feature.diary.components.DiaryEmptyScreen
-import com.easylife.diary.feature.diary.components.DiaryScreenDataList
 import com.easylife.diary.feature.diary.components.DiaryScreenTopBar
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -59,11 +59,15 @@ class DiaryScreen : BaseScreen<DiaryViewModel>() {
             ) {
                 when (uiState) {
                     DiaryUiState.Loading -> {}
-                    DiaryUiState.EmptyDiary -> DiaryEmptyScreen()
+                    DiaryUiState.EmptyDiary -> {
+                        EmptyEntryList(
+                            message = "Write down your thoughts and track your mood to get insights. Add your first entry"
+                        )
+                    }
                     is DiaryUiState.DataLoaded -> {
-                        DiaryScreenDataList(uiState.data) {entry ->
+                        EntryList(list = uiState.data, onItemClicked = {entry ->
                             viewModel.navigateWithEntry(entry)
-                        }
+                        })
                     }
                 }
             }

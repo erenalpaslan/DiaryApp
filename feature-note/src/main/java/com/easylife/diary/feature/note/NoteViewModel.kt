@@ -9,7 +9,7 @@ import com.easylife.diary.core.domain.usecases.AddEntryUseCase
 import com.easylife.diary.core.domain.usecases.DeleteEntryUseCase
 import com.easylife.diary.core.domain.usecases.EditEntryUseCase
 import com.easylife.diary.core.model.DiaryNote
-import com.easylife.diary.feature.note.enums.MoodTypes
+import com.easylife.diary.core.designsystem.enums.MoodTypes
 import com.easylife.diary.core.navigation.DiaryNavigator
 import com.easylife.diary.core.navigation.screen.DiaryArgs
 import dagger.hilt.android.lifecycle.HiltViewModel

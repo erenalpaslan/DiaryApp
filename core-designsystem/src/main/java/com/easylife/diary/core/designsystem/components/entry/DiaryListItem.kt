@@ -1,13 +1,11 @@
-package com.easylife.diary.feature.diary.components
+package com.easylife.diary.core.designsystem.components.entry
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,9 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.easylife.diary.core.designsystem.enums.MoodTypes
 import com.easylife.diary.core.model.DiaryNote
-import com.easylife.diary.feature.note.enums.MoodTypes
 
 /**
  * Created by erenalpaslan on 2.01.2023

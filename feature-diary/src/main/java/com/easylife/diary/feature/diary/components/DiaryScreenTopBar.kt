@@ -66,6 +66,7 @@ fun DiaryScreenTopBar(
                     )
                     IconButton(
                         onClick = {
+                            isSearching = false
                             searchText = ""
                             onCleared()
                         }
