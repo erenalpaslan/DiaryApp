@@ -22,7 +22,7 @@ fun CurrentDateButton(
     isCurrentMonth: Boolean,
     onClick: () -> Unit
 ) {
-    if (isCurrentMonth) {
+    if (!isCurrentMonth) {
         IconButton(
             onClick = {
                 onClick()

@@ -8,9 +8,21 @@ import java.time.LocalDate
  */
 data class CalendarState(
     val currentDate: LocalDate = LocalDate.now(),
-    val currentSelectedDate: LocalDate = LocalDate.now(),
-    val selected: DatePoint? = null,
-    val page: Int = 1,
-    val isCurrentMonth: Boolean = true,
+    val currentPoint: DatePoint? = null,
+    var currentSelectedDate: LocalDate? = LocalDate.now(),
+    var selected: DatePoint? = null,
+    var page: Int = 1,
+    var isCurrentMonth: Boolean = true,
     val pages: ArrayList<Pair<String, List<DatePoint>>> = arrayListOf()
-)
+) {
+    fun selectCurrent() {
+        currentSelectedDate = currentPoint?.date
+        selected = currentPoint
+        pages.indexOfFirst { it.first == currentSelectedDate.toString() }.let {
+            if (it != -1) {
+                page = it
+            }
+        }
+
+    }
+}

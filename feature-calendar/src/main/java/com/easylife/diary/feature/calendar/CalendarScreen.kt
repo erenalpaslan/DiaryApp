@@ -67,11 +67,17 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
             mutableStateOf(CalendarState())
         }
 
+        LaunchedEffect(key1 = calendarState.value.selected) {
+            calendarState.value.selected?.let {
+                viewModel.onSelectionChanged(it.date)
+            }
+        }
+
         Scaffold(
             topBar = {
                 TopAppBar(
                     navigationIcon = {
-                        TextButton(onClick = {
+                        /*TextButton(onClick = {
                             showDateSelectionDialog = true
                         }) {
                             Row(
@@ -83,30 +89,27 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
                                     contentDescription = "Expand more icon"
                                 )
                             }
-                        }
+                        }*/
                     },
                     title = {
 
                     },
                     actions = {
-                        CurrentDateButton(
-                            isCurrentMonth = isCurrentMonth
+                        /*CurrentDateButton(
+                            isCurrentMonth = calendarState.value.isCurrentMonth
                         ) {
-
-                        }
+                            //calendarState.value.selectCurrent()
+                        }*/
                     }
                 )
             }
         ) {
-            Column(modifier = Modifier
-                .padding(it)
-                .fillMaxSize(),
+            Column(modifier = Modifier.padding(top = it.calculateTopPadding()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CalendarPager(
                     calendarState = calendarState
                 ) { point ->
-                    viewModel.onSelectionChanged(point.date)
                 }
                 Divider()
                 if (calendarState.value.selected?.hasEntry == true) {

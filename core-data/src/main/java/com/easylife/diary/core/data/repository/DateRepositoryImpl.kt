@@ -60,7 +60,7 @@ class DateRepositoryImpl @Inject constructor() : DateRepository {
             points.add(
                 DatePoint(
                     date = date.withDayOfMonth(dayOfMonth),
-                    isCurrentDate = currentDayOfMonth == dayOfMonth && currentMonth == date.monthValue && currentYear == date.year
+                    isCurrentDate = currentDayOfMonth == dayOfMonth && currentMonth == date.monthValue && currentYear == date.year,
                 )
             )
         }

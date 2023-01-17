@@ -51,11 +51,9 @@ class DiaryScreen : BaseScreen<DiaryViewModel>() {
                     }
                 )
             }
-        ) {
+        ) { paddingValues ->
             Column(
-                modifier = Modifier
-                    .padding(it)
-                    .fillMaxSize()
+                modifier = Modifier.padding(top = paddingValues.calculateTopPadding())
             ) {
                 when (uiState) {
                     DiaryUiState.Loading -> {}
