@@ -49,6 +49,7 @@ class CalendarViewModel @Inject constructor(
                 is DiaryResult.Error -> {}
                 is DiaryResult.Success -> {
                     result.data?.let { data ->
+                        val current = data.currentDatePoints.find { it.isCurrentDate }
                         _calendarState.update {
                             it.copy(
                                 pages = arrayListOf(
@@ -56,7 +57,9 @@ class CalendarViewModel @Inject constructor(
                                     localDate.toString() to data.currentDatePoints,
                                     localDate.plusMonths(1).toString() to data.nextDatePoints
                                 ),
-                                currentDate = localDate
+                                currentDate = localDate,
+                                selected = current,
+                                currentSelectedDate = current?.date
                             )
                         }
                     }

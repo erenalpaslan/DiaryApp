@@ -8,7 +8,7 @@ import java.time.LocalDate
  */
 data class CalendarState(
     val currentDate: LocalDate = LocalDate.now(),
-    val currentSelectedDate: LocalDate = LocalDate.now(),
+    val currentSelectedDate: LocalDate? = LocalDate.now(),
     val selected: DatePoint? = null,
     val page: Int = 1,
     val isCurrentMonth: Boolean = true,
