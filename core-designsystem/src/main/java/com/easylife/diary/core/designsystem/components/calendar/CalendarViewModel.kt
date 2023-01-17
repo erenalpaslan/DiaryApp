@@ -3,6 +3,7 @@ package com.easylife.diary.core.designsystem.components.calendar
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.easylife.diary.core.common.extension.isCurrentDate
 import com.easylife.diary.core.common.util.DiaryResult
 import com.easylife.diary.core.domain.usecases.GetDatePointListByLocalDateUseCase
 import com.easylife.diary.core.domain.usecases.GetDateUseCase
@@ -59,7 +60,8 @@ class CalendarViewModel @Inject constructor(
                                 ),
                                 currentDate = localDate,
                                 selected = current,
-                                currentSelectedDate = current?.date
+                                currentSelectedDate = current?.date,
+                                currentPoint = current
                             )
                         }
                     }
@@ -103,7 +105,8 @@ class CalendarViewModel @Inject constructor(
                         _calendarState.update {
                             it.copy(
                                 page = if (page == 0) 1 else page,
-                                currentSelectedDate = date
+                                currentSelectedDate = date,
+                                isCurrentMonth = date.isCurrentDate(_calendarState.value.currentDate)
                             )
                         }
                     } ?: run {
@@ -113,7 +116,8 @@ class CalendarViewModel @Inject constructor(
                             it.copy(
                                 page = if (page == 0) 1 else page,
                                 pages = it.pages,
-                                currentSelectedDate = date
+                                currentSelectedDate = date,
+                                isCurrentMonth = date.isCurrentDate(_calendarState.value.currentDate)
                             )
                         }
                     }
@@ -124,7 +128,8 @@ class CalendarViewModel @Inject constructor(
                         _calendarState.update {
                             it.copy(
                                 page = page,
-                                currentSelectedDate = date
+                                currentSelectedDate = date,
+                                isCurrentMonth = date.isCurrentDate(_calendarState.value.currentDate)
                             )
                         }
                     } ?: run {
@@ -134,7 +139,8 @@ class CalendarViewModel @Inject constructor(
                             it.copy(
                                 page = page,
                                 pages = it.pages,
-                                currentSelectedDate = date
+                                currentSelectedDate = date,
+                                isCurrentMonth = date.isCurrentDate(_calendarState.value.currentDate)
                             )
                         }
                     }

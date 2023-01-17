@@ -77,7 +77,7 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
             topBar = {
                 TopAppBar(
                     navigationIcon = {
-                        TextButton(onClick = {
+                        /*TextButton(onClick = {
                             showDateSelectionDialog = true
                         }) {
                             Row(
@@ -89,17 +89,17 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
                                     contentDescription = "Expand more icon"
                                 )
                             }
-                        }
+                        }*/
                     },
                     title = {
 
                     },
                     actions = {
-                        CurrentDateButton(
-                            isCurrentMonth = isCurrentMonth
+                        /*CurrentDateButton(
+                            isCurrentMonth = calendarState.value.isCurrentMonth
                         ) {
-
-                        }
+                            //calendarState.value.selectCurrent()
+                        }*/
                     }
                 )
             }
