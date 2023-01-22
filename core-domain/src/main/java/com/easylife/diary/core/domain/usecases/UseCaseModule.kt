@@ -80,4 +80,12 @@ class UseCaseModule {
     ): GetEntryGroupByLocalDateUseCase {
         return GetEntryGroupByLocalDateUseCase(dispatchers, entryRepository)
     }
+
+    @Provides
+    fun providesGetWeekDateUseCase(
+        dispatchers: DiaryDispatchers,
+        dateRepository: DateRepository
+    ): GetWeekDataUseCase {
+        return GetWeekDataUseCase(dispatchers, dateRepository)
+    }
 }

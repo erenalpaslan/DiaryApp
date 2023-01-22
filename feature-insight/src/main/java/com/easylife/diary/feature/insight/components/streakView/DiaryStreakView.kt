@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.easylife.diary.core.designsystem.theme.red
+import com.easylife.diary.core.model.insights.WeekData
 import com.easylife.diary.feature.insight.R
 
 /**
@@ -32,7 +33,7 @@ import com.easylife.diary.feature.insight.R
 @Composable
 fun DiaryStreakView(
     longestChain: Int = 14,
-    latestWeek: List<String> = emptyList()
+    streakData: List<WeekData> = emptyList(),
 ) {
     Card(
         shape = MaterialTheme.shapes.small,
@@ -42,9 +43,11 @@ fun DiaryStreakView(
             .padding(horizontal = 16.dp)
             .wrapContentSize()
     ) {
-        ConstraintLayout(modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()) {
+        ConstraintLayout(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+        ) {
             val (titleRef, streakViewRef, dividerRef, chainRef) = createRefs()
 
             Text(
@@ -58,12 +61,15 @@ fun DiaryStreakView(
                     width = Dimension.fillToConstraints
                 }
             )
-            StreakView(modifier = Modifier.constrainAs(streakViewRef) {
-                top.linkTo(titleRef.bottom, 16.dp)
-                start.linkTo(parent.start, 24.dp)
-                end.linkTo(parent.end, 24.dp)
-                width = Dimension.fillToConstraints
-            })
+            StreakView(
+                modifier = Modifier.constrainAs(streakViewRef) {
+                    top.linkTo(titleRef.bottom, 16.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end, 24.dp)
+                    width = Dimension.fillToConstraints
+                },
+                streakData = streakData
+            )
             Divider(
                 modifier = Modifier.constrainAs(dividerRef) {
                     top.linkTo(streakViewRef.bottom, 8.dp)
