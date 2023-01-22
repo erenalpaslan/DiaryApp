@@ -4,6 +4,7 @@ import com.easylife.diary.core.data.repository.DateRepository
 import com.easylife.diary.core.data.repository.DateRepositoryImpl
 import com.easylife.diary.core.data.repository.EntryRepository
 import com.easylife.diary.core.data.repository.EntryRepositoryImpl
+import com.easylife.diary.core.preferences.PreferencesManager
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun providesEntryRepository(
-        repositoryImpl: EntryRepositoryImpl
+        repositoryImpl: EntryRepositoryImpl,
     ): EntryRepository
 
     @Binds

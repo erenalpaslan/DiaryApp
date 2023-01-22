@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(project(":core-model"))
     implementation(project(":core-common"))
+    implementation(project(":core-preferences"))
 
     implementation(libs.gson)
 
