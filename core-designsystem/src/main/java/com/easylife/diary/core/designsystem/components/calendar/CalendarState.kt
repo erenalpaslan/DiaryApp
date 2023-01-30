@@ -2,6 +2,8 @@ package com.easylife.diary.core.designsystem.components.calendar
 
 import com.easylife.diary.core.model.calendar.DatePoint
 import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.Locale
 
 /**
  * Created by erenalpaslan on 14.01.2023
@@ -23,6 +25,13 @@ data class CalendarState(
                 page = it
             }
         }
+    }
 
+    fun getFirstDate(): LocalDate? {
+        return if (pages.isNotEmpty()) {
+            LocalDate.parse(pages[page].first)
+        }else {
+            null
+        }
     }
 }

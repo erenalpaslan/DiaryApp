@@ -1,8 +1,12 @@
 package com.easylife.diary.core.common.util
 
+import android.text.format.DateUtils
 import com.easylife.diary.core.model.DiaryDate
 import com.easylife.diary.core.model.DiaryNote
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.format.TextStyle
+import java.time.temporal.WeekFields
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -44,7 +48,12 @@ object DateUtil {
         return Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
     }
 
-    fun getDayNameList(): List<String> {
-        return listOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+    fun getDayNameList(): List<String?> {
+        val weekFields = WeekFields.of(Locale.getDefault())
+        var dayOfWeek = weekFields.firstDayOfWeek
+        return (0..6).map {
+            dayOfWeek = dayOfWeek.plus(1)
+            dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+        }
     }
 }

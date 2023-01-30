@@ -4,13 +4,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -31,10 +34,13 @@ import com.easylife.diary.core.designsystem.components.calendar.CalendarState
 import com.easylife.diary.core.designsystem.components.entry.EmptyEntryList
 import com.easylife.diary.core.designsystem.components.entry.EntryList
 import com.easylife.diary.core.designsystem.theme.red
+import com.easylife.diary.core.model.EntryGroup
 import com.easylife.diary.core.navigation.screen.DiaryArgs
 import com.easylife.diary.feature.calendar.components.CurrentDateButton
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.time.format.TextStyle
+import java.util.Locale
 
 /**
  * Created by erenalpaslan on 1.01.2023
@@ -45,7 +51,7 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
         LaunchedEffect(viewModel) {
             navigator.resultFlow<Boolean>(DiaryArgs.ENTRY_AFFECTED).onEach {
                 if (it) {
-                    viewModel.selectedDate?.let {localDate ->
+                    viewModel.selectedDate?.let { localDate ->
                         viewModel.onSelectionChanged(localDate)
                     }
                 }
@@ -57,12 +63,6 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
 
     @Composable
     private fun Content() {
-        var showDateSelectionDialog by remember {
-            mutableStateOf(false)
-        }
-        var isCurrentMonth by remember {
-            mutableStateOf(true)
-        }
         var calendarState = remember {
             mutableStateOf(CalendarState())
         }
@@ -77,34 +77,31 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
             topBar = {
                 TopAppBar(
                     navigationIcon = {
-                        /*TextButton(onClick = {
-                            showDateSelectionDialog = true
-                        }) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-                                Text(text = "January")
-                                Icon(
-                                    imageVector = Icons.Rounded.ExpandMore,
-                                    contentDescription = "Expand more icon"
-                                )
-                            }
-                        }*/
                     },
                     title = {
-
+                        Text(
+                            text = "${
+                                calendarState.value.getFirstDate()?.month?.getDisplayName(
+                                    TextStyle.FULL,
+                                    Locale.getDefault()
+                                )
+                            }"
+                        )
                     },
                     actions = {
-                        /*CurrentDateButton(
-                            isCurrentMonth = calendarState.value.isCurrentMonth
-                        ) {
-                            //calendarState.value.selectCurrent()
-                        }*/
+                        Row(modifier = Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = "${calendarState.value.getFirstDate()?.year}",
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                            Spacer(modifier = Modifier.width(16.dp))
+                        }
                     }
                 )
             }
         ) {
-            Column(modifier = Modifier.padding(top = it.calculateTopPadding()),
+            Column(
+                modifier = Modifier.padding(top = it.calculateTopPadding()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CalendarPager(
@@ -115,7 +112,7 @@ class CalendarScreen : BaseScreen<CalendarViewModel>() {
                 if (calendarState.value.selected?.hasEntry == true) {
                     Spacer(modifier = Modifier.height(16.dp))
                     EntryScreen()
-                }else {
+                } else {
                     EmptyEntryList(
                         message = "Record your thoughts and moods on this day"
                     )

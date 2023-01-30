@@ -96,7 +96,8 @@ fun CalendarContent(
         ) {
             dayNames.value.forEach {
                 Text(
-                    text = it, style = MaterialTheme.typography.labelSmall,
+                    text = it ?: "",
+                    style = MaterialTheme.typography.labelSmall,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .defaultMinSize(minWidth = 20.dp)
