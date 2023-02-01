@@ -1,5 +1,6 @@
 package com.easylife.diary.core.data.repository
 
+import android.util.Log
 import com.easylife.diary.core.common.util.DateUtil
 import com.easylife.diary.core.data.room.dao.EntryDao
 import com.easylife.diary.core.model.calendar.CalendarDates
@@ -72,6 +73,7 @@ class DateRepositoryImpl @Inject constructor(
                 )
             )
         }
+        Log.d("DateControl", "Prev ADDED => $points")
         val currentDayOfMonth = today.dayOfMonth
         val currentMonth = today.monthValue
         val currentYear = today.year
@@ -83,6 +85,7 @@ class DateRepositoryImpl @Inject constructor(
                 )
             )
         }
+        Log.d("DateControl", "Current ADDED => $points")
         var nextDayOfMonth = 1
         (points.size..42).forEach { _ ->
             points.add(
@@ -93,6 +96,7 @@ class DateRepositoryImpl @Inject constructor(
             )
             nextDayOfMonth++
         }
+        Log.d("DateControl", "Next ADDED => $points")
         return points
     }
 
