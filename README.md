@@ -7,6 +7,16 @@ An Android application built with Kotlin and Jetpack Compose, following best pra
 * See diary statistics, such as streak and longest entry chain, in the insights tab
 * Change the theme of the app to personalize your experience
 
+## 📷 Previews
+
+<p align="center">
+<img src="previews/preview_1.jpeg" alt="drawing" width="270px" />
+<img src="previews/preview_2.jpeg" alt="drawing" width="270px" />
+<img src="previews/preview_3.jpeg" alt="drawing" width="270px" /></br>
+<img src="previews/preview_4.jpeg" alt="drawing" width="270px" />
+<img src="previews/preview_5.jpeg" alt="drawing" width="270px" />
+<img src="previews/preview_6.jpeg" alt="drawing" width="270px" />
+</p>
 
 ## Architecture
 The application is built with a multi-module architecture, with the presentation module following the MVVM design pattern.
