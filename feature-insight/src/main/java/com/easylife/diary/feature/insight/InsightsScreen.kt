@@ -56,10 +56,6 @@ class InsightsScreen : BaseScreen<InsightsViewModel>() {
                     longestChain = uiState.longestChain,
                     streakData = uiState.streakData
                 )
-                Spacer(modifier = Modifier.height(16.dp))
-                TrendsView()
-                Spacer(modifier = Modifier.height(16.dp))
-                MoodGraph()
                 Spacer(modifier = Modifier.height(32.dp))
             }
         }
