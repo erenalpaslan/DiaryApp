@@ -1,6 +1,7 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("diary.android.application")
+    id("diary.android.application.compose")
+    id("diary.hilt")
 }
 
 android {
@@ -38,31 +39,25 @@ android {
 
 dependencies {
     implementation(libs.core.ktx)
+    implementation(libs.androidx.appcompat)
 
-    //region Compose
-    val composeBom = platform(libs.androidx.compose.bom)
-    implementation(composeBom)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material.iconsExtended)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material3.windowSizeClass)
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.compose.runtime.tracing)
-    implementation(libs.androidx.compose.runtime.livedata)
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.foundation.layout)
+    //region Features
+    implementation(project(":feature-splash"))
+    implementation(project(":feature-theme"))
+    implementation(project(":feature-note"))
+    implementation(project(":feature-diary"))
+    implementation(project(":feature-calendar"))
+    implementation(project(":feature-insight"))
+    implementation(project(":feature-setting"))
     //endregion
 
-    //region Koin
-    implementation(libs.koin)
+    //region Cores
+    implementation(project(":core-designsystem"))
+    implementation(project(":core-preferences"))
+    implementation(project(":core-navigation"))
     //endregion
 
     //region Accompanist
-    implementation(libs.accompanist.pager)
-    implementation(libs.accompanist.pager.indicators)
     implementation(libs.accompanist.navigation.animation)
     //endregion
 
@@ -81,18 +76,4 @@ dependencies {
     implementation(libs.retrofit.gson.converter)
     implementation(libs.retrofit.coroutine.adapter)
     //endregion
-
-    //region Coil
-    implementation(libs.coil)
-    //endregion
-
-    /*implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.1.0-alpha03'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"*/
 }

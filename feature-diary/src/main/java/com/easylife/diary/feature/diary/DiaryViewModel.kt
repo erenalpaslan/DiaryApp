@@ -1,0 +1,95 @@
+package com.easylife.diary.feature.diary
+
+import android.util.Log
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
+import com.easylife.diary.core.common.util.DiaryResult
+import com.easylife.diary.core.designsystem.base.BaseViewModel
+import com.easylife.diary.core.domain.usecases.GetAllEntriesUseCase
+import com.easylife.diary.core.domain.usecases.SearchEntriesUseCase
+import com.easylife.diary.core.model.DiaryNote
+import com.easylife.diary.core.navigation.DiaryNavigator
+import com.easylife.diary.core.navigation.screen.DiaryArgs
+import com.easylife.diary.core.navigation.screen.DiaryRoutes
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+/**
+ * Created by erenalpaslan on 1.01.2023
+ */
+@HiltViewModel
+class DiaryViewModel @Inject constructor(
+    private val navigator: DiaryNavigator,
+    private val getAllEntriesUseCase: GetAllEntriesUseCase,
+    private val searchEntriesUseCase: SearchEntriesUseCase
+): BaseViewModel() {
+
+    private val _uiState: MutableStateFlow<DiaryUiState> = MutableStateFlow(DiaryUiState.Loading)
+    val uiSate: StateFlow<DiaryUiState> = _uiState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            getAllEntries()
+        }
+    }
+
+    fun getAllEntries() {
+        viewModelScope.launch {
+            getAllEntriesUseCase.execute(Unit).collect {result ->
+                when(result) {
+                    is DiaryResult.Error -> _error.postValue(result.message)
+                    is DiaryResult.Success -> _uiState.update {
+                        if (result.data.isNullOrEmpty()) {
+                            DiaryUiState.EmptyDiary
+                        }else {
+                            DiaryUiState.DataLoaded(
+                                data = result.data ?: emptyList(),
+                                rawData = result.data ?: emptyList()
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun navigateWithEntry(entry: DiaryNote) {
+        navigator.navigate(
+            route = "${DiaryRoutes.noteRoute}?${DiaryArgs.NOTE_KEY}=${navigator.toJson(entry)}"
+        )
+    }
+
+    fun onSearch(text: String?) {
+        if (_uiState.value is DiaryUiState.DataLoaded && !text.isNullOrEmpty()) {
+            viewModelScope.launch {
+                searchEntriesUseCase.execute(SearchEntriesUseCase.Params(
+                    text,
+                    (_uiState.value as DiaryUiState.DataLoaded).rawData)
+                ).collect {result ->
+                    when(result) {
+                        is DiaryResult.Error -> _error.postValue(result.message)
+                        is DiaryResult.Success -> {
+                            result.data?.let {data ->
+                                _uiState.update {
+                                    DiaryUiState.DataLoaded(
+                                        data = data,
+                                        rawData = (_uiState.value as DiaryUiState.DataLoaded).rawData,
+                                        currentDate = (_uiState.value as DiaryUiState.DataLoaded).currentDate
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }else {
+            getAllEntries()
+        }
+    }
+
+}
